@@ -1,0 +1,17 @@
+.myfooter {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+    z-index: 1;
+    /* text-align: center; */
+}
+
+.myfooter p {
+    margin-top: 1rem;
+}
+
+.footerDivider {
+    border: 0;
+    border-top: 5px solid blue;
+}
