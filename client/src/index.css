@@ -6,6 +6,7 @@
 .navLink a {
   color:black;
   text-decoration: none;
+  /* background-color: #ecc06e; */
 }
 
 .navLink a:hover {

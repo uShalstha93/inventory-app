@@ -5,9 +5,12 @@ const NavBarLeft = () => {
 
     return (
 
-        <div className='navLink container ml-2 position-fixed' style={{ fontSize: "20px", backgroundColor: "#e6e6e6"}}>
+        <div className='navLink container ml-2' style={{ fontSize: "20px", backgroundColor: "#e6e6e6"}}>
             <Link to="/">
                 <p className="leftMenuLetter"><i className="bi bi-house-fill mr-2"></i> DASHBOARD</p>
+            </Link>
+            <Link to="/category">
+                <p className="leftMenuLetter"><i className="bi bi-tags-fill mr-2"></i> CATEGORY</p>
             </Link>
             <Link to="/products">
                 <p className="leftMenuLetter"><i className="bi bi-archive-fill mr-2"></i> PRODUCTS</p>

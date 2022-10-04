@@ -1,7 +1,8 @@
 .wrapper {
     min-height: auto;
-    padding-bottom: 800px;
+    padding-bottom: 400px;
     background-color: #e6e6e6;
-    /* margin-top: 65px; */
+    /* margin-top: 36px; */
     padding-top: 60px;
+    /* background: red; */
 }
