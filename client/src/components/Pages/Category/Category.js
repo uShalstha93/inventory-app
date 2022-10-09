@@ -1,10 +1,29 @@
-import React from 'react'
-import { Row } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Row, Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import AddCategory from './AddCategory'
+import { showCategoryList } from './AddCategorySlice'
+import EditCategory from './EditCategory'
+import loading from '../../../image/LoadingIMG.gif'
 
 const Category = () => {
 
     document.title = `Category - Inventory`
+
+    const dispatch = useDispatch();
+    const { categoryList } = useSelector((state) => state.AddCategory)
+
+    const fetchCategory = () => {
+        fetch("http://localhost:2000/category")
+            .then((res) => res.json())
+            .then(data => {
+                dispatch(showCategoryList(data.detail))
+            })
+    }
+
+    useEffect(() => {
+        fetchCategory()
+    }, [])
 
     return (
 
@@ -13,7 +32,33 @@ const Category = () => {
                 <AddCategory />
             </Row>
             <Row>
-                This is category display field...
+                <div className="col-9 bg-white rounded">
+                        This part is for search field....
+                    <Table responsive hover size='sm'>
+                        <thead>
+                            <tr>
+                                <th>CATEGORY ID</th>
+                                <th>CATEGORY NAME</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {categoryList.length > 0 ? categoryList.map((item, index) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.catID}</td>
+                                        <td>{item.catName}</td>
+                                        <td className="">
+                                            {item.catStatus}
+                                            {/* <i className="bi bi-pencil-square btn-sm" onClick={ <EditCategory /> } /> */}
+                                            {/* <EditCategory /> */}
+                                        </td>
+                                    </tr>
+                                )
+                            }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div> }
+                        </tbody>
+                    </Table>
+                </div>
             </Row>
         </div>
     )

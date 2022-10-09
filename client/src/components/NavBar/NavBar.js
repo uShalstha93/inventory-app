@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../image/mainLogo.png';
+import Logo from '../../image/IMSLogoP.png';
 
 const NavBar = () => {
 
@@ -32,7 +32,7 @@ const NavBar = () => {
     return (
 
         <div className='row shadow rounded m-0 p-3 bg-white' style={navstyle}>
-            <Link to="/"><img src={Logo} className="d-flex" alt="brand" width="35px" /></Link>
+            <Link to="/"><img src={Logo} className="d-flex" alt="brand" width="50px" /></Link>
             <div style={textStyle}>Inventory Management System</div>
             <div style={userStyle}>UserName</div>
         </div>

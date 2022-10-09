@@ -16,7 +16,7 @@ const CategorySchema = new mongoose.Schema({
 }, {
     collection: 'category'
 })
-const category = mongoose.model('UserModel', CategorySchema)
+const category = mongoose.model('InventoryModel', CategorySchema)
 // console.log(category)
 
 const connect = async () => {
@@ -34,12 +34,48 @@ app.listen(port, () => {
     console.log(`Inventory Server running at port ${port}`)
 })
 
+app.get('/category', async(req, res) => {
+    try {
+        category.find({})
+        .then(result => {
+            res.json({
+                message: "Category List",
+                detail: result
+            })
+        })
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 app.post('/category', async (req, res) => {
     try {
+        // console.log(req.body)
         category.create(req.body)
         res.json({
             message: "category successfully added!",
             categoryDetail: req.body
+        })
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
+app.put('/category', async(req, res) => {
+    try {
+        category.findOneAndUpdate({ catID: req.body.catID }, {
+            $set: { 
+                catName: req.body.catName,
+                catStatus: req.body.catStatus 
+            }
+        })
+        .then(result => {
+            res.json({
+                message: "category info updated!!",
+                categoryDetail: req.body
+            })
         })
     }
     catch (err) {
