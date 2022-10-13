@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
     addShow: false,
-    // editShow: false,
+    editShow: false,
     categoryList: [],
     categoryID: "",
     categoryName: "",
@@ -19,12 +19,12 @@ const AddCategorySlice = createSlice({
         addCloseWindow: (state) => {
             state.addShow = false
         },
-        // editShowWindow: (state) => {
-        //     state.editShow = true
-        // },
-        // editCloseWindow: (state) => {
-        //     state.editShow = false
-        // },
+        editShowWindow: (state) => {
+            state.editShow = true
+        },
+        editCloseWindow: (state) => {
+            state.editShow = false
+        },
         showCategoryList: (state, actions) => {
             state.categoryList = actions.payload
         },

@@ -6,13 +6,13 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import '../../../wrapper.css'
 
-const EditCategory = () => {
+const EditCategory = (props) => {
 
     // const [itemEdit, setItemEdit] = useState(props.item)
     // const [editShow, setEditShow] = useState(true)
 
     const dispatch = useDispatch();
-    const { editShow, categoryList } = useSelector((state) => state.AddCategory)
+    const { editShow } = useSelector((state) => state.AddCategory)
 
     const editHandleShow = () => {
         dispatch(editShowWindow())
@@ -41,9 +41,9 @@ const EditCategory = () => {
     return (
 
         <>
-            {/* <div>
+            <div>
                 <i className="bi bi-pencil-square btn-sm" onClick={editHandleShow} />
-            </div> */}
+            </div>
             <Modal show={editShow} onHide={editHandleClose}>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6" }} closeButton>
                     <Modal.Title>EDIT CATEGORY</Modal.Title>

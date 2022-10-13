@@ -1,11 +1,12 @@
 import React from 'react'
 
-const DefaultForm = () => {
+const DefaultForm = (props) => {
 
     return (
 
         <div>
             {console.log("hello")}
+            {console.log("props.name")}
         </div>
     )
 }

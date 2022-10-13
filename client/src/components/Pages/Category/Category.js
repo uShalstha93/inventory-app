@@ -51,10 +51,10 @@ const Category = () => {
                                         <td>{item.catName}</td>
                                         <td className="">
                                             {item.catStatus}
-                                            <div>
-                                                <i className="bi bi-pencil-square btn-sm" onClick={<EditCategory />} />
-                                            </div>
-                                            {/* <EditCategory item={item} /> */}
+                                            {/* <div>
+                                                <i className="bi bi-pencil-square btn-sm" onClick={()=> {return <DefaultForm />}} />
+                                            </div> */}
+                                            <EditCategory item={item} />
                                         </td>
                                     </tr>
                                 )
