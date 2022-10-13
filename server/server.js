@@ -9,6 +9,7 @@ app.use(cors())
 app.use(bodyParser.json())
 const uri = 'mongodb://localhost:27017/InventoryDB'
 
+//category schema for mongodb
 const CategorySchema = new mongoose.Schema({
     catID: { type: Number, required: true },
     catName: { type: String, required: true },
@@ -19,6 +20,7 @@ const CategorySchema = new mongoose.Schema({
 const category = mongoose.model('InventoryModel', CategorySchema)
 // console.log(category)
 
+//mongodb connection function
 const connect = async () => {
     try {
         mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -30,10 +32,13 @@ const connect = async () => {
 }
 connect();
 
+
 app.listen(port, () => {
     console.log(`Inventory Server running at port ${port}`)
 })
 
+
+//get method API
 app.get('/category', async(req, res) => {
     try {
         category.find({})
@@ -53,6 +58,8 @@ app.get('/category', async(req, res) => {
     }
 })
 
+
+//post method API
 app.post('/category', async (req, res) => {
     try {
         // console.log(req.body)
@@ -71,6 +78,8 @@ app.post('/category', async (req, res) => {
     }
 })
 
+
+//update method API
 app.put('/category', async(req, res) => {
     try {
         category.findOneAndUpdate({ catID: req.body.catID }, {

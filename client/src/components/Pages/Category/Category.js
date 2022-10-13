@@ -5,7 +5,7 @@ import AddCategory from './AddCategory'
 import { showCategoryList } from './AddCategorySlice'
 import EditCategory from './EditCategory'
 import loading from '../../../image/LoadingIMG.gif'
-import DefaultForm from '../../Form/DefaultForm'
+// import DefaultForm from '../../Form/DefaultForm'
 
 const Category = () => {
 
@@ -14,6 +14,7 @@ const Category = () => {
     const dispatch = useDispatch();
     const { categoryList } = useSelector((state) => state.AddCategory)
 
+    //get data and store in categorylist from backend
     const fetchCategory = () => {
         fetch("http://localhost:2000/category")
             .then((res) => res.json())
@@ -29,9 +30,13 @@ const Category = () => {
     return (
 
         <div className="container-fluid">
+
+            {/* Add category button and form */}
             <Row>
                 <AddCategory />
             </Row>
+
+            {/* display category section */}
             <Row>
                 <div className="col-9 bg-white rounded">
                     This part is for search field....
