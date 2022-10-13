@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-    show: false,
+    addShow: false,
+    // editShow: false,
     categoryList: [],
     categoryID: "",
     categoryName: "",
@@ -12,12 +13,18 @@ const AddCategorySlice = createSlice({
     name: "AddCategory",
     initialState,
     reducers: {
-        showWindow: (state) => {
-            state.show = true
+        addShowWindow: (state) => {
+            state.addShow = true
         },
-        closeWindow: (state) => {
-            state.show = false
+        addCloseWindow: (state) => {
+            state.addShow = false
         },
+        // editShowWindow: (state) => {
+        //     state.editShow = true
+        // },
+        // editCloseWindow: (state) => {
+        //     state.editShow = false
+        // },
         showCategoryList: (state, actions) => {
             state.categoryList = actions.payload
         },
@@ -33,5 +40,5 @@ const AddCategorySlice = createSlice({
     }
 })
 
-export const { showWindow, closeWindow, showCategoryList, changeCategoryID, changeCategoryName, changeCategoryStatus } = AddCategorySlice.actions;
+export const { addShowWindow, addCloseWindow, editShowWindow, editCloseWindow, showCategoryList, changeCategoryID, changeCategoryName, changeCategoryStatus } = AddCategorySlice.actions;
 export default AddCategorySlice.reducer;

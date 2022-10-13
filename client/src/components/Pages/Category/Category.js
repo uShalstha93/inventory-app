@@ -5,6 +5,7 @@ import AddCategory from './AddCategory'
 import { showCategoryList } from './AddCategorySlice'
 import EditCategory from './EditCategory'
 import loading from '../../../image/LoadingIMG.gif'
+import DefaultForm from '../../Form/DefaultForm'
 
 const Category = () => {
 
@@ -33,7 +34,7 @@ const Category = () => {
             </Row>
             <Row>
                 <div className="col-9 bg-white rounded">
-                        This part is for search field....
+                    This part is for search field....
                     <Table responsive hover size='sm'>
                         <thead>
                             <tr>
@@ -50,12 +51,14 @@ const Category = () => {
                                         <td>{item.catName}</td>
                                         <td className="">
                                             {item.catStatus}
-                                            {/* <i className="bi bi-pencil-square btn-sm" onClick={ <EditCategory /> } /> */}
-                                            {/* <EditCategory /> */}
+                                            <div>
+                                                <i className="bi bi-pencil-square btn-sm" onClick={<EditCategory />} />
+                                            </div>
+                                            {/* <EditCategory item={item} /> */}
                                         </td>
                                     </tr>
                                 )
-                            }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div> }
+                            }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div>}
                         </tbody>
                     </Table>
                 </div>

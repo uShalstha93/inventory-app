@@ -6,3 +6,11 @@
     padding-top: 60px;
     /* background: red; */
 }
+
+.error-message {
+    color: #ff0000;
+    padding: .5em .2em;
+    height: 1em;
+    position: relative;
+    font-size: .8em;
+}

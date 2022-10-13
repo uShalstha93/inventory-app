@@ -6,12 +6,14 @@ import NavBarLeft from './components/NavBarLeft/NavBarLeft';
 import Category from './components/Pages/Category/Category';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import Products from './components/Pages/Products/Products';
+// import DefaultForm from './components/Form/DefaultForm';
 import './wrapper.css';
 
 const App = () => {
 
   return (
 
+    // <DefaultForm />
     <Router>
       <NavBar />
       <div className='wrapper'>

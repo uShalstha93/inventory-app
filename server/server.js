@@ -46,6 +46,10 @@ app.get('/category', async(req, res) => {
     }
     catch (err) {
         console.log(err)
+        res.send({
+            errorMsg: "Unable to get data!",
+            errorDetail: err
+        })
     }
 })
 
@@ -60,6 +64,10 @@ app.post('/category', async (req, res) => {
     }
     catch (err) {
         console.log(err)
+        res.send({
+            errorMsg: "Unable to post data in database!",
+            errorDetail: err
+        })
     }
 })
 
@@ -80,5 +88,9 @@ app.put('/category', async(req, res) => {
     }
     catch (err) {
         console.log(err)
+        res.send({
+            errorMsg: "Unable to update data!",
+            errorDetail: err
+        })
     }
 })
