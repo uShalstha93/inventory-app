@@ -15,11 +15,11 @@ const NavBarLeft = () => {
             <Link to="/products">
                 <p className="leftMenuLetter"><i className="bi bi-archive-fill mr-2"></i> PRODUCTS</p>
             </Link>
-            <Link to="/purchase">
-                <p className="leftMenuLetter"><i className="bi bi-cart-fill mr-2"></i> PURCHASE</p>
+            <Link to="/customers">
+                <p className="leftMenuLetter"><i className="bi bi-person-fill mr-2"></i> CUSTOMERS</p>
             </Link>
-            <Link to="/sales">
-                <p className="leftMenuLetter"><i className="bi bi-receipt mr-2"></i> SALES</p>
+            <Link to="/orders">
+                <p className="leftMenuLetter"><i className="bi bi-receipt mr-2"></i> ORDERS</p>
             </Link>
         </div>
 
