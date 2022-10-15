@@ -4,25 +4,25 @@
 All the packages store in one Inventory!
 
 
-## Authors
-
-- [@uShalstha93](https://www.github.com/uShalstha93)
-
-
 ## Features
 
-- [] Category
+- [ ] Category
     - [x] Show Category
     - [x] Add Category
     - [x] Edit Category
-    - [] Delete Category
-- [] Product
-    - [] Show Product
-    - [] Add Product
-    - [] Edit Product
-    - [] Delete Product
-- [] Purchase
-- [] Sell
+    - [x] Delete Category
+- [ ] Product
+    - [ ] Show Product
+    - [ ] Add Product
+    - [ ] Edit Product
+    - [ ] Delete Product
+- [ ] Purchase
+- [ ] Sell
+
+
+## Authors
+
+- [@uShalstha93](https://www.github.com/uShalstha93)
 
 
 ## Installation
