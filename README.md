@@ -7,11 +7,13 @@ All the packages store in one Inventory!
 ## Features
 
 - [ ] Category
+    - [ ] Search Category
     - [x] Show Category
     - [x] Add Category
     - [x] Edit Category
     - [x] Delete Category
 - [ ] Product
+    - [ ] Search Product
     - [ ] Show Product
     - [ ] Add Product
     - [ ] Edit Product
