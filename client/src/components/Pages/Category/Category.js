@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import AddCategory from './AddCategory'
-import { showCategoryList } from './AddCategorySlice'
+import { showCategoryList } from './CategorySlice'
 import EditCategory from './EditCategory'
 import loading from '../../../image/LoadingIMG.gif'
 // import DefaultForm from '../../Form/DefaultForm'
@@ -12,7 +12,7 @@ const Category = () => {
     document.title = `Category - Inventory`
 
     const dispatch = useDispatch();
-    const { categoryList } = useSelector((state) => state.AddCategory)
+    const { categoryList } = useSelector((state) => state.Category)
 
     //get data and store in categorylist from backend
     const fetchCategory = () => {
@@ -38,6 +38,7 @@ const Category = () => {
 
             {/* display category section */}
             <Row>
+                {/* {JSON.stringify(categoryList)} */}
                 <div className="col-9 bg-white rounded">
                     This part is for search field....
                     <Table responsive hover size='sm'>

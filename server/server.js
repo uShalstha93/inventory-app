@@ -9,7 +9,7 @@ app.use(cors())
 app.use(bodyParser.json())
 const uri = 'mongodb://localhost:27017/InventoryDB'
 
-//category schema for mongodb
+//category schema for mongodb/category table
 const CategorySchema = new mongoose.Schema({
     catID: { type: Number, required: true },
     catName: { type: String, required: true },
@@ -17,6 +17,8 @@ const CategorySchema = new mongoose.Schema({
 }, {
     collection: 'category'
 })
+
+//creating inventoryModal
 const category = mongoose.model('InventoryModel', CategorySchema)
 // console.log(category)
 

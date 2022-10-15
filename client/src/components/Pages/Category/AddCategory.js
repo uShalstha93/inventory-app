@@ -7,18 +7,15 @@ import * as Yup from 'yup';
 import '../../../wrapper.css';
 
 const AddCategory = () => {
-    // const [addshowwindow, setaddshowwindow] =usestate(false)
+    
     const dispatch = useDispatch();
     const { addShow } = useSelector((state) => state.AddCategory)
-    // console.log(`show = ` + show)
 
     const handleShow = () => {
-        //setaddshow(true)
         dispatch(addShowWindow())
     }
 
     const handleClose = () => {
-        // setaddshowwindow(false)
         dispatch(addCloseWindow())
     }
 

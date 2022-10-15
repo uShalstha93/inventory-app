@@ -1,27 +1,23 @@
 import React from 'react'
 import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { editShowWindow, editCloseWindow } from './AddCategorySlice'
+import { editShowWindow, editCloseWindow } from './EditCategorySlice'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import '../../../wrapper.css'
 
 const EditCategory = (props) => {
 
-    // const [itemEdit, setItemEdit] = useState(props.item)
-    // const [editShow, setEditShow] = useState(true)
-
     const dispatch = useDispatch();
-    const { editShow } = useSelector((state) => state.AddCategory)
+    const { editShow, currentSelectedItem } = useSelector((state) => state.EditCategory)
+    console.log(currentSelectedItem)
 
     const editHandleShow = () => {
-        dispatch(editShowWindow())
-        // setEditShow(true)
+        dispatch(editShowWindow(props.item))
     }
 
     const editHandleClose = () => {
         dispatch(editCloseWindow())
-        // setEditShow(false)
     }
 
     const validateUpdateCategorySchema = Yup.object().shape({
@@ -37,7 +33,7 @@ const EditCategory = (props) => {
             .required("* Status is Required!!")
     })
 
-    
+
     return (
 
         <>
@@ -50,8 +46,31 @@ const EditCategory = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Formik
-                        initialValues={{ catID: "", catName: "", catStatus: "" }}
+                        initialValues={{ catID: currentSelectedItem.catID, catName: currentSelectedItem.catName, catStatus: currentSelectedItem.catStatus }}
                         validationSchema={validateUpdateCategorySchema}
+                        onSubmit={(values, { setSubmitting, resetForm }) => {
+                            setSubmitting(true);
+                            setTimeout(() => {
+                                // alert(JSON.stringify(values, null, 2));
+                                const requestOptions = {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        catID: values.catID,
+                                        catName: values.catName,
+                                        catStatus: values.catStatus,
+                                    })
+                                }
+                                fetch("http://localhost:2000/category", requestOptions)
+                                    .then(alert("Category Updated Successfully!!"))
+                                    .then(resetForm())
+                                    .then(setSubmitting(false))
+                                // categorySubmit();
+                                // resetForm();
+                                // setSubmitting(false);
+                            }, 500);
+
+                        }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
                             <Form onSubmit={handleSubmit}>
@@ -76,8 +95,8 @@ const EditCategory = (props) => {
                                 <Form.Group as={Row} className="mb-3" controlId="categoryStatus">
                                     <Form.Label column sm="2">STATUS:</Form.Label>
                                     <Col sm="5">
-                                        <Form.Select id="selectCategory" name="catStatus" onChange={handleChange} style={{ borderColor: touched.catID && errors.catID ? "red" : null }} >
-                                            <option defaultValue={values.catStatus}>Select Status</option>
+                                        <Form.Select id="selectCategory" name="catStatus" onChange={handleChange} defaultValue={values.catStatus} style={{ borderColor: touched.catID && errors.catID ? "red" : null }} >
+                                            <option>Select Status</option>
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
                                         </Form.Select>
@@ -87,7 +106,7 @@ const EditCategory = (props) => {
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button variant='outline-primary' size='sm' type="submit">UPDATE</Button>
+                                    <Button variant='outline-primary' size='sm' type="submit" disabled={isSubmitting}>UPDATE</Button>
                                     <Button variant='outline-danger' size='sm' onClick={editHandleClose}>CLOSE</Button>
                                     {/* {JSON.stringify(categoryList)} */}
                                 </Modal.Footer>
