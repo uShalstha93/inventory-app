@@ -40,16 +40,16 @@ app.listen(port, () => {
 })
 
 
-//get method API
-app.get('/category', async(req, res) => {
+//get category method API
+app.get('/category', async (req, res) => {
     try {
         category.find({})
-        .then(result => {
-            res.json({
-                message: "Category List",
-                detail: result
+            .then(result => {
+                res.json({
+                    message: "Category List",
+                    detail: result
+                })
             })
-        })
     }
     catch (err) {
         console.log(err)
@@ -61,7 +61,7 @@ app.get('/category', async(req, res) => {
 })
 
 
-//post method API
+//post category method API
 app.post('/category', async (req, res) => {
     try {
         // console.log(req.body)
@@ -81,26 +81,47 @@ app.post('/category', async (req, res) => {
 })
 
 
-//update method API
-app.put('/category', async(req, res) => {
+//update category method API
+app.put('/category', async (req, res) => {
     try {
         category.findOneAndUpdate({ catID: req.body.catID }, {
-            $set: { 
+            $set: {
                 catName: req.body.catName,
-                catStatus: req.body.catStatus 
+                catStatus: req.body.catStatus
             }
         })
-        .then(result => {
-            res.json({
-                message: "category info updated!!",
-                categoryDetail: req.body
+            .then(result => {
+                res.json({
+                    message: "category info updated!!",
+                    categoryDetail: req.body
+                })
             })
-        })
     }
     catch (err) {
         console.log(err)
         res.send({
             errorMsg: "Unable to update data!",
+            errorDetail: err
+        })
+    }
+})
+
+
+//Delete Category method API
+app.delete('/category', async (req, res) => {
+    try {
+        category.deleteOne({ catID: req.body.catID })
+            .then(result => {
+                res.json({
+                    message: "category deleted!!",
+                    categoryDetail: req.body
+                })
+            })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to delete category",
             errorDetail: err
         })
     }
