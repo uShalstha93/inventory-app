@@ -10,7 +10,7 @@ const CategorySlice = createSlice({
     reducers: {
         showCategoryList: (state, actions) => {
             state.categoryList = actions.payload
-        }
+        },
     }
 })
 

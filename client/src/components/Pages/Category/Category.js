@@ -6,7 +6,6 @@ import { showCategoryList } from './CategorySlice'
 import EditCategory from './EditCategory'
 import DeleteCategory from './DeleteCategory'
 import loading from '../../../image/LoadingIMG.gif'
-// import DefaultForm from '../../Form/DefaultForm'
 
 const Category = () => {
 
@@ -14,6 +13,8 @@ const Category = () => {
 
     const dispatch = useDispatch();
     const { categoryList } = useSelector((state) => state.Category)
+
+    // const [searchName, setSearchName] = useState("")
 
     //get data and store in categorylist from backend
     const fetchCategory = () => {
@@ -23,6 +24,11 @@ const Category = () => {
                 dispatch(showCategoryList(data.detail))
             })
     }
+
+    //searching category name
+    // const searchCategory = categoryList.filter((sItem) => {
+    //     return sItem.catName.includes(searchName)
+    // })
 
     useEffect(() => {
         fetchCategory()
@@ -40,12 +46,17 @@ const Category = () => {
             {/* display category section */}
             <Row>
                 {/* {JSON.stringify(categoryList)} */}
-                <div className="col-10 bg-white rounded">
-                    This part is for search field....
+                <div>
+                    {/* <i className="bi bi-search" style={{ position: "relative" }} /> */}
+                    <input type="text" placeholder="Search Category" className="shadow rounded mb-4" 
+                        style={{ position: "relative", right: ".8rem", height: "2.3rem", border: "none", textAlign: "center" }}
+                        onKeyUp={null} />
+                </div>
+                <div className="col-9 bg-white rounded shadow">
                     <Table responsive hover size='sm'>
                         <thead>
                             <tr>
-                                <th>CATEGORY ID</th>
+                                <th>ID</th>
                                 <th>CATEGORY NAME</th>
                                 <th>STATUS</th>
                                 <th>OPTIONS</th>
