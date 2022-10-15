@@ -13,7 +13,7 @@ const EditCategory = (props) => {
     // console.log(currentSelectedItem)
 
     const editHandleShow = () => {
-        dispatch(editShowWindow(props.item))
+        dispatch(editShowWindow(props.EditItem))
     }
 
     const editHandleClose = () => {
@@ -62,7 +62,7 @@ const EditCategory = (props) => {
                                     })
                                 }
                                 fetch("http://localhost:2000/category", requestOptions)
-                                    .then(alert("Category Updated Successfully!!"))
+                                    .then(alert(`${values.catName} - Category Updated Successfully`))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                 // categorySubmit();

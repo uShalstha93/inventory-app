@@ -75,7 +75,7 @@ const AddCategory = () => {
                                     })
                                 }
                                 fetch("http://localhost:2000/category", requestOptions)
-                                    .then(alert("Category Added Successfully!!"))
+                                    .then(alert(`${values.catName} - Category Added Successfully`))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                 // categorySubmit();

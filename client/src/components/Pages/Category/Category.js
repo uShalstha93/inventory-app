@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import AddCategory from './AddCategory'
 import { showCategoryList } from './CategorySlice'
 import EditCategory from './EditCategory'
+import DeleteCategory from './DeleteCategory'
 import loading from '../../../image/LoadingIMG.gif'
 // import DefaultForm from '../../Form/DefaultForm'
 
@@ -39,7 +40,7 @@ const Category = () => {
             {/* display category section */}
             <Row>
                 {/* {JSON.stringify(categoryList)} */}
-                <div className="col-9 bg-white rounded">
+                <div className="col-10 bg-white rounded">
                     This part is for search field....
                     <Table responsive hover size='sm'>
                         <thead>
@@ -47,6 +48,7 @@ const Category = () => {
                                 <th>CATEGORY ID</th>
                                 <th>CATEGORY NAME</th>
                                 <th>STATUS</th>
+                                <th>OPTIONS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,12 +57,12 @@ const Category = () => {
                                     <tr key={item.id}>
                                         <td>{item.catID}</td>
                                         <td>{item.catName}</td>
-                                        <td className="">
-                                            {item.catStatus}
-                                            {/* <div>
-                                                <i className="bi bi-pencil-square btn-sm" onClick={()=> {return <DefaultForm />}} />
-                                            </div> */}
-                                            <EditCategory item={item} />
+                                        <td>{item.catStatus}</td>
+                                        <td>
+                                            <div className="row">
+                                                <div className="col-1 mx-1"><EditCategory EditItem={item} /></div>
+                                                <div className="col-1"><DeleteCategory DeleteItem={item} /></div>
+                                            </div>
                                         </td>
                                     </tr>
                                 )
