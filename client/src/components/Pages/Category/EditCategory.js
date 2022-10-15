@@ -10,7 +10,7 @@ const EditCategory = (props) => {
 
     const dispatch = useDispatch();
     const { editShow, currentSelectedItem } = useSelector((state) => state.EditCategory)
-    console.log(currentSelectedItem)
+    // console.log(currentSelectedItem)
 
     const editHandleShow = () => {
         dispatch(editShowWindow(props.item))
