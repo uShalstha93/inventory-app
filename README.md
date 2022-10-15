@@ -18,8 +18,8 @@ All the packages store in one Inventory!
     - [ ] Add Product
     - [ ] Edit Product
     - [ ] Delete Product
-- [ ] Purchase
-- [ ] Sell
+- [ ] Customers
+- [ ] Orders
 
 
 ## Authors
