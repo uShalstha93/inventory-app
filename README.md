@@ -1,7 +1,16 @@
 
 # Inventory Management System
 
-All the packages store in one Inventory!
+Tech Stack:
+(MERN)
+- React JS
+- React Router
+- Redux
+- React Bootstrap
+- Formik & Yup for Form Validation
+- MongoDB
+- Node JS
+- Express JS
 
 
 ## Features
