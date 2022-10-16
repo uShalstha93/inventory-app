@@ -1,42 +1,46 @@
-const express = require('express')
-const app = express()
+const app = require('express')()
 const cors = require('cors')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const port = 2000
+require("dotenv").config()
+const connectDB = require('./db/mongoose')()
+const category = require('../src/models/Category')
 
 app.use(cors())
 app.use(bodyParser.json())
-const uri = 'mongodb://localhost:27017/InventoryDB'
+// const uri = 'mongodb://localhost:27017/InventoryDB'
 
 //category schema for mongodb/category table
-const CategorySchema = new mongoose.Schema({
-    catID: { type: Number, required: true },
-    catName: { type: String, required: true },
-    catStatus: { type: String, required: true }
-}, {
-    collection: 'category'
-})
+// const CategorySchema = new mongoose.Schema({
+//     catID: { type: Number, required: true },
+//     catName: { type: String, required: true },
+//     catStatus: { type: String, required: true }
+// }, {
+//     collection: 'category'
+// })
 
 //creating inventoryModal
-const category = mongoose.model('InventoryModel', CategorySchema)
+// const category = mongoose.model('InventoryModel', CategorySchema)
 // console.log(category)
 
 //mongodb connection function
-const connect = async () => {
-    try {
-        mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-        console.log("Connected to MongoDB.")
-    }
-    catch (error) {
-        console.error(error)
-    }
-}
-connect();
+// const connect = async () => {
+//     try {
+//         mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+//         console.log("Connected to MongoDB.")
+//     }
+//     catch (error) {
+//         console.error(error)
+//     }
+// }
+// connect();
 
 
-app.listen(port, () => {
-    console.log(`Inventory Server running at port ${port}`)
+app.listen(process.env.port, (err) => {
+    if(err){
+        return console.log("error", err)
+    }
+    console.log(`Inventory Server running at port ${process.env.port}`)
 })
 
 

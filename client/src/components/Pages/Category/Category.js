@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import AddCategory from './AddCategory'
@@ -14,7 +14,7 @@ const Category = () => {
     const dispatch = useDispatch();
     const { categoryList } = useSelector((state) => state.Category)
 
-    // const [searchName, setSearchName] = useState("")
+    const [searchName, setSearchName] = useState("")
 
     //get data and store in categorylist from backend
     const fetchCategory = () => {
@@ -25,10 +25,12 @@ const Category = () => {
             })
     }
 
-    //searching category name
-    // const searchCategory = categoryList.filter((sItem) => {
-    //     return sItem.catName.includes(searchName)
-    // })
+    // searching category
+    const searchCategory = categoryList.filter((sItem) => {
+        return sItem.catName.toLowerCase().includes(searchName)
+    })
+
+    // console.log(searchCategory)
 
     useEffect(() => {
         fetchCategory()
@@ -48,9 +50,10 @@ const Category = () => {
                 {/* {JSON.stringify(categoryList)} */}
                 <div>
                     {/* <i className="bi bi-search" style={{ position: "relative" }} /> */}
-                    <input type="text" placeholder="Search Category" className="shadow rounded mb-4" 
-                        style={{ position: "relative", right: ".8rem", height: "2.3rem", border: "none", textAlign: "center" }}
-                        onKeyUp={null} />
+                    <input type="text" placeholder="Search..." className="shadow rounded mb-4" 
+                        style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px" }}
+                        onKeyUp={(e) => setSearchName(e.target.value) } />
+                    <i className="bi bi-search" style={{ position: "relative", right: "3rem" }} />
                 </div>
                 <div className="col-9 bg-white rounded shadow">
                     <Table responsive hover size='sm'>
@@ -63,7 +66,7 @@ const Category = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {categoryList.length > 0 ? categoryList.map((item, index) => {
+                            {searchCategory.length > 0 ? searchCategory.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.catID}</td>
