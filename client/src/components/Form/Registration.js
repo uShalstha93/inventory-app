@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom'
 // import '../../../wrapper.css'
 
 const Registration = () => {
@@ -30,8 +31,7 @@ const Registration = () => {
 
         <div className="registration-body">
             <div className="form-body pb-4 shadow rounded">
-            <h3 className="mt-3 text-center">Register Now</h3>
-
+            <h1 className="mt-4 text-center" style={{ position: "relative", top: "10px" }}>SIGN UP NOW</h1>
             <Formik
                 initialValues={{ username: "", fullname: "", address: "", contactno: "", password: "" }}
                 validationSchema={validateFormSchema}
@@ -86,7 +86,10 @@ const Registration = () => {
                                 ) : null}
                             </Col>
                         </Form.Group>
-                        <Button variant="outline-primary" size="sm" type="submit">Register</Button>
+                        <Button variant="outline-primary" size="sm" type="submit" style={{ position: "relative", left: "8rem", marginTop: "10px" }}>SIGN UP</Button>
+                        <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem" }}>
+                            Already Have Account ? <Link to="/login">Log In</Link>
+                        </Form.Text>
                     </Form>
                 )}
             </Formik>
