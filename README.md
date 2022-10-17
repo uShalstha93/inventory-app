@@ -15,6 +15,10 @@ Tech Stack:
 
 ## Features
 
+- [ ] Users
+    - [x] Login
+    - [x] Registration
+
 - [ ] Category
     - [x] Search Category
     - [x] Show Category
