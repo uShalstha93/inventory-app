@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import '../../../wrapper.css'
+// import '../../../wrapper.css'
 
 const Registration = () => {
 
@@ -23,14 +23,15 @@ const Registration = () => {
             .positive("* Must be positive number!")
             .integer("* Must be integer Value!"),
         password: Yup.string()
-            .required("* Must be Required!")
+            .required("* Password is Required!")
     })
 
     return (
 
-        <div className="container">
+        <div className="registration-body">
+            <div className="form-body pb-4 shadow rounded">
+            <h3 className="mt-3 text-center">Register Now</h3>
 
-            <h2>Registration</h2>
             <Formik
                 initialValues={{ username: "", fullname: "", address: "", contactno: "", password: "" }}
                 validationSchema={validateFormSchema}
@@ -39,10 +40,10 @@ const Registration = () => {
                 }}
             >
                 {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} className="m-5">
                         <Form.Group as={Row} className="mb-3" controlId="username">
-                            <Form.Label column sm="2">UserName :</Form.Label>
-                            <Col sm="5">
+                            <Form.Label column sm="4">UserName:</Form.Label>
+                            <Col sm="8">
                                 <Form.Control type="text" name="username" placeholder="UserName" onChange={handleChange} value={values.username} style={{ borderColor: touched.username && errors.username ? "red" : null }} />
                                 {touched.username && errors.username ? (
                                     <Col className="error-message">{errors.username}</Col>
@@ -50,8 +51,8 @@ const Registration = () => {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="fullname">
-                            <Form.Label column sm="2">Full Name :</Form.Label>
-                            <Col sm="5">
+                            <Form.Label column sm="4">Full Name:</Form.Label>
+                            <Col sm="8">
                                 <Form.Control type="text" name="fullname" placeholder="Enter Full Name" onChange={handleChange} value={values.fullname} style={{ borderColor: touched.fullname && errors.fullname ? "red" : null }} />
                                 {touched.fullname && errors.fullname ? (
                                     <Col className="error-message">{errors.fullname}</Col>
@@ -59,8 +60,8 @@ const Registration = () => {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="address">
-                            <Form.Label column sm="2">Address :</Form.Label>
-                            <Col sm="5">
+                            <Form.Label column sm="4">Address:</Form.Label>
+                            <Col sm="8">
                                 <Form.Control type="text" name="address" placeholder="Enter Address" onChange={handleChange} value={values.address} style={{ borderColor: touched.address && errors.address ? "red" : null }} />
                                 {touched.address && errors.address ? (
                                     <Col className="error-message">{errors.address}</Col>
@@ -68,8 +69,8 @@ const Registration = () => {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="contactno">
-                            <Form.Label column sm="2">Contact No :</Form.Label>
-                            <Col sm="5">
+                            <Form.Label column sm="4">Contact No:</Form.Label>
+                            <Col sm="8">
                                 <Form.Control type="text" name="contactno" placeholder="Enter Contact Number" onChange={handleChange} value={values.contactno} style={{ borderColor: touched.contactno && errors.contactno ? "red" : null }} />
                                 {touched.contactno && errors.contactno ? (
                                     <Col className="error-message">{errors.contactno}</Col>
@@ -77,8 +78,8 @@ const Registration = () => {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="password">
-                            <Form.Label column sm="2">Password :</Form.Label>
-                            <Col sm="5">
+                            <Form.Label column sm="4">Password:</Form.Label>
+                            <Col sm="8">
                                 <Form.Control type="password" name="password" placeholder="Enter Password" onChange={handleChange} value={values.password} style={{ borderColor: touched.password && errors.password ? "red" : null }} />
                                 {touched.password && errors.password ? (
                                     <Col className="error-message">{errors.password}</Col>
@@ -89,6 +90,7 @@ const Registration = () => {
                     </Form>
                 )}
             </Formik>
+            </div>
         </div>
 
     )

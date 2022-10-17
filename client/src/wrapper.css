@@ -1,16 +1,16 @@
-* {
+/* * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0;
-}
+} */
 
 .wrapper {
-    min-height: auto;
-    padding-bottom: 400px;
-    background-color: #e6e6e6;
-    /* margin-top: 36px; */
-    padding-top: 60px;
+    /* min-height: auto; */
+    padding-bottom: 300px;
+    background-color: #dfdbdb;
+    margin-top: 36px;
+    padding-top: 20px;
     /* background: red; */
 }
 
@@ -20,4 +20,25 @@
     height: 1em;
     position: relative;
     font-size: .8em;
+}
+
+.registration-body {
+    /* background: rgb(255, 255, 255); */
+    background: radial-gradient(
+      circle,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(30, 54, 59, 1) 0%,
+      rgba(93, 93, 116, 1) 100%
+    );
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    mix-blend-mode: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-body {
+    background: aliceblue;
 }

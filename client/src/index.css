@@ -1,7 +1,8 @@
-#body{
-  background-color: #e6e6e6;
+/* #body{
+  background-color: aliceblue;
   width: 1300px;
-}
+  height: 100%;
+} */
 
 .navLink a {
   color:black;
@@ -14,7 +15,7 @@
   text-decoration: none;
 }
 
-#root{
-  /* margin-top: 65px; */
+/* #root{
+  margin-top: 65px;
   padding-top: 60px;
-}
+} */

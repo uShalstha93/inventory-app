@@ -51,7 +51,7 @@ const Category = () => {
                 <div>
                     {/* <i className="bi bi-search" style={{ position: "relative" }} /> */}
                     <input type="text" placeholder="Search..." className="shadow rounded mb-4" 
-                        style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px" }}
+                        style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px", border: "none" }}
                         onKeyUp={(e) => setSearchName(e.target.value) } />
                     <i className="bi bi-search" style={{ position: "relative", right: "3rem" }} />
                 </div>
