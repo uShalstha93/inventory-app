@@ -28,6 +28,11 @@ Tech Stack:
     - [ ] Edit Product
     - [ ] Delete Product
 - [ ] Customers
+    - [ ] Search Customers
+    - [ ] Show Customers
+    - [ ] Add Customers
+    - [ ] Edit Customers
+    - [ ] Delete Customers
 - [ ] Orders
 
 
