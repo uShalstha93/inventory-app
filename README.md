@@ -19,6 +19,8 @@ Tech Stack:
     - [x] Login
     - [x] Registration
 
+- [ ] Inventory Dashboard
+
 - [x] Category
     - [x] Search Category
     - [x] Show Category
