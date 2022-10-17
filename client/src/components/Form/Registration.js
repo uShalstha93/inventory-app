@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const Registration = () => {
 
-    const validateFormSchema = Yup.object().shape({
+    const validateRegisterSchema = Yup.object().shape({
         username: Yup.string()
             .required("* UserName is Required!")
             .min(5, "* Must be Greater 5 characters!")
@@ -20,7 +20,7 @@ const Registration = () => {
             .required("* Address is Required!"),
         contactno: Yup.number()
             .required("* Contact Number is Required!")
-            .min(10, "* Must be of 10 numbers")
+            // .max(11, "* Contact Number Must be Equal to 10 numbers!")
             .positive("* Must be positive number!")
             .integer("* Must be integer Value!"),
         password: Yup.string()
@@ -30,13 +30,13 @@ const Registration = () => {
     return (
 
         <div className="registration-body">
-            <div className="form-body pb-4 shadow rounded">
-            <h1 className="mt-4 text-center" style={{ position: "relative", top: "10px" }}>SIGN UP NOW</h1>
+            <div className="form-body p-4 shadow rounded">
+            <h1 className="text-center" style={{ position: "relative", top: "10px" }}>SIGN UP NOW</h1>
             <Formik
                 initialValues={{ username: "", fullname: "", address: "", contactno: "", password: "" }}
-                validationSchema={validateFormSchema}
+                validationSchema={validateRegisterSchema}
                 onSubmit={(values, { resetForm }) => {
-
+                    console.log(values)
                 }}
             >
                 {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (

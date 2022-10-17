@@ -7,6 +7,7 @@ import Category from './components/Pages/Category/Category';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import Products from './components/Pages/Products/Products';
 import Registration from './components/Form/Registration';
+import Login from './components/Form/Login';
 import './wrapper.css';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path='/register' element={<Registration />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
     // <Router>
