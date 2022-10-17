@@ -40,7 +40,14 @@ Tech Stack:
     - [ ] Edit Customers
     - [ ] Delete Customers
 
+
+## Future Feature
+
 - [ ] Orders
+    - [ ] Orders Dashboard
+    - [ ] Add Orders
+
+- [ ] Order Tracking
 
 
 ## Authors
