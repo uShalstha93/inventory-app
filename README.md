@@ -16,7 +16,7 @@ Tech Stack:
 ## Features
 
 - [ ] Category
-    - [ ] Search Category
+    - [x] Search Category
     - [x] Show Category
     - [x] Add Category
     - [x] Edit Category
