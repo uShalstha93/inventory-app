@@ -1,15 +1,15 @@
 const express = require('express')
 const app = express()
-const cors = require('cors')
-const bodyParser = require('body-parser')
+// const cors = require('cors')
+// const bodyParser = require('body-parser')
 const category = require('../models/Category')
 const router = express.Router()
 
-app.use(cors())
-app.use(bodyParser.json())
+// app.use(cors())
+// app.use(bodyParser.json())
 
 //get category method API
-router.get('/category', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         category.find({})
             .then(result => {
@@ -29,7 +29,7 @@ router.get('/category', async (req, res) => {
 })
 
 //post category method API
-router.post('/category', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         // console.log(req.body)
         category.create(req.body)
@@ -48,7 +48,7 @@ router.post('/category', async (req, res) => {
 })
 
 //update category method API
-router.put('/category', async (req, res) => {
+router.put('/', async (req, res) => {
     try {
         category.findOneAndUpdate({ catID: req.body.catID }, {
             $set: {
@@ -73,7 +73,7 @@ router.put('/category', async (req, res) => {
 })
 
 //Delete Category method API
-router.delete('/category', async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
         category.deleteOne({ catID: req.body.catID })
             .then(result => {
@@ -91,5 +91,6 @@ router.delete('/category', async (req, res) => {
         })
     }
 })
+
 
 module.exports = router

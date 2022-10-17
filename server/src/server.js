@@ -1,17 +1,17 @@
 const app = require('express')()
-// const cors = require('cors')
+const cors = require('cors')
 // const mongoose = require('mongoose')
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 require('dotenv').config()
 const connectDB = require('./db/mongoose')()
 // const category = require('../src/models/Category')
 const CategoryRouter = require('../src/routes/CategoryRouter')
 
-// app.use(cors())
-// app.use(bodyParser.json())
+app.use(cors())
+app.use(bodyParser.json())
 // const uri = 'mongodb://localhost:27017/InventoryDB'
 
-app.use('/category', CategoryRouter)
+app.use('/category',CategoryRouter)
 
 //category schema for mongodb/category table
 // const CategorySchema = new mongoose.Schema({
