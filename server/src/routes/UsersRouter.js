@@ -3,15 +3,14 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
-const userModel = require('../models/UsersModel')
+const users = require('../models/UserSchema')
 
 const router = express.Router()
-
 
 //get user method api
 router.get('/', async (req, res) => {
     try {
-        userModel.find({})
+        users.find({})
             .then(result => [
                 res.json({
                     message: "Users List",
@@ -34,7 +33,7 @@ router.post('/', async (req, res) => {
         bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
             req.body['password'] = hash
             // console.log(req.body)
-            userModel.create(req.body)
+            users.create(req.body)
                 .then((result) => {
                     res.json({
                         message: "user added!",

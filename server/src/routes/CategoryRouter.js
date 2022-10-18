@@ -1,12 +1,8 @@
 const express = require('express')
 const app = express()
-// const cors = require('cors')
-// const bodyParser = require('body-parser')
-const category = require('../models/Category')
-const router = express.Router()
 
-// app.use(cors())
-// app.use(bodyParser.json())
+const category = require('../models/CategorySchema')
+const router = express.Router()
 
 //get category method API
 router.get('/', async (req, res) => {
