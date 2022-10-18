@@ -15,25 +15,41 @@ Tech Stack:
 
 ## Features
 
-- [ ] Category
+- [x] Users
+    - [x] Login
+    - [x] Registration
+
+- [ ] Inventory Dashboard
+
+- [x] Category
     - [x] Search Category
     - [x] Show Category
     - [x] Add Category
     - [x] Edit Category
     - [x] Delete Category
+
 - [ ] Product
     - [ ] Search Product
     - [ ] Show Product
     - [ ] Add Product
     - [ ] Edit Product
     - [ ] Delete Product
+
 - [ ] Customers
     - [ ] Search Customers
     - [ ] Show Customers
     - [ ] Add Customers
     - [ ] Edit Customers
     - [ ] Delete Customers
+
+
+## Future Feature
+
 - [ ] Orders
+    - [ ] Orders Dashboard
+    - [ ] Add Orders
+
+- [ ] Order Tracking
 
 
 ## Authors
