@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 
 const Registration = () => {
 
+    document.title = `Register - Inventory`
+
     const validateRegisterSchema = Yup.object().shape({
         username: Yup.string()
             .required("* UserName is Required!")
@@ -23,6 +25,8 @@ const Registration = () => {
             // .max(11, "* Contact Number Must be Equal to 10 numbers!")
             .positive("* Must be positive number!")
             .integer("* Must be integer Value!"),
+        email: Yup.string()
+            .required(" * Email is Required!"),
         password: Yup.string()
             .required("* Password is Required!")
     })
@@ -33,7 +37,7 @@ const Registration = () => {
             <div className="form-body p-4 shadow rounded">
             <h1 className="text-center" style={{ position: "relative", top: "10px" }}>SIGN UP NOW</h1>
             <Formik
-                initialValues={{ username: "", fullname: "", address: "", contactno: "", password: "" }}
+                initialValues={{ username: "", fullname: "", address: "", contactno: "", email: "", password: "" }}
                 validationSchema={validateRegisterSchema}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -77,6 +81,15 @@ const Registration = () => {
                                 ) : null}
                             </Col>
                         </Form.Group>
+                        <Form.Group as={Row} className="mb-3" controlId="email">
+                            <Form.Label column sm="4">Email:</Form.Label>
+                            <Col sm="8">
+                                <Form.Control type="text" name="email" placeholder="Enter Email" onChange={handleChange} value={values.email} style={{ borderColor: touched.email && errors.email ? "red" : null }} />
+                                {touched.email && errors.email ? (
+                                    <Col className="error-message">{errors.email}</Col>
+                                ) : null}
+                            </Col>
+                        </Form.Group>
                         <Form.Group as={Row} className="mb-3" controlId="password">
                             <Form.Label column sm="4">Password:</Form.Label>
                             <Col sm="8">
@@ -88,7 +101,7 @@ const Registration = () => {
                         </Form.Group>
                         <Button variant="outline-primary" size="sm" type="submit" style={{ position: "relative", left: "8rem", marginTop: "10px" }}>SIGN UP</Button>
                         <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem" }}>
-                            Already Have Account ? <Link to="/login">Log In</Link>
+                            Already Have Account ? <Link to="/login">SIGN IN</Link>
                         </Form.Text>
                     </Form>
                 )}

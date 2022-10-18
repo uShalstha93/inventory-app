@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
 
+    document.title = `Sign In - Inventory`
+
     const validateLoginSchema = Yup.object().shape({
         username: Yup.string()
             .required("* UserName is Required!")
