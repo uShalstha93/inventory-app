@@ -4,12 +4,14 @@ const bodyParser = require('body-parser')
 require('dotenv').config()
 const connectDB = require('./db/mongoose')()
 const CategoryRouter = require('../src/routes/CategoryRouter')
-const UserRouter = require('../src/routes/UsersRouter')
+const UserRegisterRouter = require('./routes/UserRegisterRouter')
+const UserLoginRouter = require('../src/routes/UserLoginRouter')
 
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/register', UserRouter)
+app.use('/register', UserRegisterRouter)
+app.use('/login', UserLoginRouter)
 app.use('/category', CategoryRouter)
 
 app.listen(process.env.port, (err) => {

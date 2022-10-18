@@ -27,8 +27,8 @@
     background: radial-gradient(
       circle,
       rgba(2, 0, 36, 1) 0%,
-      #1e363b 0%,
-      rgba(93, 93, 116, 1) 100%
+      rgb(30, 54, 59) 0%,
+      rgb(93, 93, 116) 100%
     );
     position: absolute;
     height: 100%;
@@ -37,6 +37,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: serif;
 }
 
 .form-body {

@@ -21,12 +21,35 @@ const Login = () => {
 
         <div className="registration-body">
             <div className="form-body p-4 rounded">
-                <h1 className="text-center">SIGN IN</h1>
+                <div className="text-center rounded shadow" style={{ background: "#5d5d74", color: "white" }}>
+                    <h1 className="" style={{ position: "relative" }}>SIGN IN</h1>
+                    <span>Welcome To Inventory Management System</span>
+                </div>
                 <Formik
                     initialValues={{ username: "", password: "" }}
                     validationSchema={validateLoginSchema}
-                    onSubmit={(values, { resetForm }) => {
-                        console.log(values)
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                        setSubmitting(true);
+                        setTimeout(() => {
+                            // alert(JSON.stringify(values, null, 2));
+                            const requestOptions = {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    userName: values.username,
+                                    password: values.password
+                                })
+                            }
+                            console.log(requestOptions.body)
+                            fetch("http://localhost:2000/login", requestOptions)
+                                .then(alert(`${values.username} - Login Successfully`))
+                                .then(resetForm())
+                                .then(setSubmitting(false))
+                            // categorySubmit();
+                            // resetForm();
+                            // setSubmitting(false);
+                        }, 500);
+
                     }}
                 >
                     {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
@@ -49,8 +72,8 @@ const Login = () => {
                                     ) : null}
                                 </Col>
                             </Form.Group>
-                            <Button variant="outline-primary" size="sm" type="submit" style={{ position: "relative", left: "8rem", marginTop: "10px" }}>SIGN IN</Button>
-                            <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem" }}>
+                            <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN IN</Button>
+                            <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "2rem" }}>
                                 Already Have Account ? <Link to="/register">REGISTER</Link>
                             </Form.Text>
                         </Form>

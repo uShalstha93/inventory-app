@@ -35,7 +35,7 @@ const Registration = () => {
 
         <div className="registration-body">
             <div className="form-body p-4 shadow rounded">
-                <div className="text-center rounded shadow" style={{ background: "#1e363b", color: "white", marginBottom: "-20px" }}>
+                <div className="text-center rounded shadow" style={{ background: "#5d5d74", color: "white", marginBottom: "-20px" }}>
                     <h1 className="" style={{ position: "relative" }}>SIGN UP NOW</h1>
                     <span>Welcome To Inventory Management System</span>
                 </div>
@@ -126,8 +126,8 @@ const Registration = () => {
                                     ) : null}
                                 </Col>
                             </Form.Group>
-                            <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "8rem", marginTop: "10px" }}>SIGN UP</Button>
-                            <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem" }}>
+                            <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN UP</Button>
+                            <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "1rem" }}>
                                 Already Have Account ? <Link to="/login">SIGN IN</Link>
                             </Form.Text>
                         </Form>
