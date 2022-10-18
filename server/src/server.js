@@ -6,12 +6,14 @@ require('dotenv').config()
 const connectDB = require('./db/mongoose')()
 // const category = require('../src/models/Category')
 const CategoryRouter = require('../src/routes/CategoryRouter')
+const UserRouter = require('../src/routes/UsersRouter')
 
 app.use(cors())
 app.use(bodyParser.json())
 // const uri = 'mongodb://localhost:27017/InventoryDB'
 
-app.use('/category',CategoryRouter)
+app.use('/register', UserRouter)
+app.use('/category', CategoryRouter)
 
 //category schema for mongodb/category table
 // const CategorySchema = new mongoose.Schema({
@@ -40,7 +42,7 @@ app.use('/category',CategoryRouter)
 
 
 app.listen(process.env.port, (err) => {
-    if(err){
+    if (err) {
         return console.log("error", err)
     }
     console.log(`Inventory Server running at port ${process.env.port}`)

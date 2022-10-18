@@ -42,8 +42,32 @@ const Registration = () => {
                 <Formik
                     initialValues={{ username: "", fullname: "", address: "", contactno: "", email: "", password: "" }}
                     validationSchema={validateRegisterSchema}
-                    onSubmit={(values, { resetForm }) => {
-                        console.log(values)
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                        setSubmitting(true);
+                        setTimeout(() => {
+                            // alert(JSON.stringify(values, null, 2));
+                            const requestOptions = {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    userName: values.username,
+                                    fullName: values.fullname,
+                                    address: values.address,
+                                    contactno: values.contactno,
+                                    email: values.email,
+                                    password: values.password
+                                })
+                            }
+                            console.log(requestOptions.body)
+                            fetch("http://localhost:2000/register", requestOptions)
+                                .then(alert(`${values.fullname} - Added Successfully`))
+                                .then(resetForm())
+                                .then(setSubmitting(false))
+                            // categorySubmit();
+                            // resetForm();
+                            // setSubmitting(false);
+                        }, 500);
+
                     }}
                 >
                     {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
@@ -102,7 +126,7 @@ const Registration = () => {
                                     ) : null}
                                 </Col>
                             </Form.Group>
-                            <Button variant="outline-primary" size="sm" type="submit" style={{ position: "relative", left: "8rem", marginTop: "10px" }}>SIGN UP</Button>
+                            <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "8rem", marginTop: "10px" }}>SIGN UP</Button>
                             <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem" }}>
                                 Already Have Account ? <Link to="/login">SIGN IN</Link>
                             </Form.Text>
