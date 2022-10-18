@@ -57,7 +57,7 @@ const AddCategory = () => {
                 <Modal.Header style={{ backgroundColor: "#e6e6e6" }} closeButton>
                     <Modal.Title>ADD CATEGORY</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{ background: "aliceblue" }}>
                     <Formik
                         initialValues={{ catID: "", catName: "", catStatus: "" }}
                         validationSchema={validateAddCategorySchema}

@@ -8,7 +8,7 @@ const users = require('../models/UserSchema')
 const router = express.Router()
 
 //get user method api
-router.get('/', async (req, res) => {
+router.get('/users', async (req, res) => {
     try {
         users.find({})
             .then(result => [
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 })
 
 //post user method api
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
             req.body['password'] = hash
@@ -50,6 +50,41 @@ router.post('/', async (req, res) => {
         console.log(err)
         res.send({
             errorMsg: "Unable to post user data!",
+            errorDetail: err
+        })
+    }
+})
+
+//post user login method api
+router.post('/login', async (req, res) => {
+    try {
+        users.find({ userName: req.body.userName })
+            .then(data => {
+                if (data.length < 1) {
+                    return res.json({
+                        message: "User Not Found!"
+                    })
+                }
+                const hashPassword = data[0].password
+                bcrypt.compare(req.body.password, hashPassword, (err, result) => {
+                    if (!result) {
+                        return res.json({
+                            message: "Password Didnot Match!"
+                        })
+                    }
+                    else {
+                        // console.log(result)
+                        res.json({
+                            message: "Password Matched!"
+                        })
+                    }
+                })
+            })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to get user data!",
             errorDetail: err
         })
     }

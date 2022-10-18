@@ -40,7 +40,7 @@ const Login = () => {
                                     password: values.password
                                 })
                             }
-                            console.log(requestOptions.body)
+                            // console.log(requestOptions.body)
                             fetch("http://localhost:2000/login", requestOptions)
                                 .then(alert(`${values.username} - Login Successfully`))
                                 .then(resetForm())

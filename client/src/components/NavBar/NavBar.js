@@ -9,7 +9,7 @@ const NavBar = () => {
         width: "100%",
         top: "0",
         zIndex: "1",
-        // backgroundColor: "orange",
+        backgroundColor: "aliceblue",
     }
 
     const textStyle = {
@@ -31,7 +31,7 @@ const NavBar = () => {
 
     return (
 
-        <div className='row shadow rounded m-0 p-3 bg-white' style={navstyle}>
+        <div className='row shadow rounded m-0 p-3' style={navstyle}>
             <Link to="/"><img src={Logo} className="d-flex" alt="brand" width="50px" /></Link>
             <div style={textStyle}>Inventory Management System</div>
             <div style={userStyle}>UserName</div>

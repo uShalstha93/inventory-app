@@ -44,7 +44,7 @@ const EditCategory = (props) => {
                 <Modal.Header style={{ backgroundColor: "#e6e6e6" }} closeButton>
                     <Modal.Title>EDIT CATEGORY</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{ background: "aliceblue" }}>
                     <Formik
                         initialValues={{ catID: currentSelectedItem.catID, catName: currentSelectedItem.catName, catStatus: currentSelectedItem.catStatus }}
                         validationSchema={validateUpdateCategorySchema}

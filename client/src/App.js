@@ -14,33 +14,32 @@ const App = () => {
 
   return (
 
-    <Router>
-      <Routes>
-        <Route path='/register' element={<Registration />} />
-        <Route path='/login' element={<Login />} />
-      </Routes>
-    </Router>
     // <Router>
-    //   <NavBar />
-    //   <div className='wrapper'>
-    //     <div className='row'>
-    //       <div className="col-2 p-4" style={{ minWidth: "250px" }}>
-    //         <NavBarLeft />
-    //       </div>
-    //       <div className="col-8 p-5" style={{ position: "relative", right: "50px"}}>
-    //         <Routes>
-    //           <Route exact path='/' element={<Dashboard />} />
-    //           {/* <Route path='/register' element={<Registration />} /> */}
-    //           <Route path='/category' element={<Category />} />
-    //           <Route path='/products' element={<Products />} />
-    //           {/* <Route path='/customers' element={} />
-    //           <Route path='/orders' element={} /> */}
-    //         </Routes>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <Footer />
+    //   <Routes>
+    //     <Route path='/register' element={<Registration />} />
+    //     <Route path='/login' element={<Login />} />
+    //   </Routes>
     // </Router>
+    <Router>
+      <NavBar />
+      <div className='wrapper'>
+        <div className='row'>
+          <div className="col-2 p-4" style={{ minWidth: "250px" }}>
+            <NavBarLeft />
+          </div>
+          <div className="col-8 p-5" style={{ position: "relative", right: "50px" }}>
+            <Routes>
+              <Route exact path='/' element={<Dashboard />} />
+              <Route path='/category' element={<Category />} />
+              <Route path='/products' element={<Products />} />
+              {/* <Route path='/customers' element={} />
+              <Route path='/orders' element={} /> */}
+            </Routes>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </Router>
 
   )
 }
