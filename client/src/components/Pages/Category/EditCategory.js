@@ -5,6 +5,7 @@ import { editShowWindow, editCloseWindow } from './EditCategorySlice'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import '../../../wrapper.css'
+import TitleImg from '../../../image/MainBackground.png'
 
 const EditCategory = (props) => {
 
@@ -41,7 +42,7 @@ const EditCategory = (props) => {
                 <i className="bi bi-pencil-square btn-sm" onClick={editHandleShow} />
             </div>
             <Modal show={editShow} onHide={editHandleClose}>
-                <Modal.Header style={{ backgroundColor: "#e6e6e6" }} closeButton>
+                <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>EDIT CATEGORY</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ background: "aliceblue" }}>

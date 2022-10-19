@@ -5,6 +5,7 @@ import { addShowWindow, addCloseWindow } from './AddCategorySlice';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import '../../../wrapper.css';
+import TitleImg from '../../../image/MainBackground.png'
 
 const AddCategory = () => {
     
@@ -53,8 +54,8 @@ const AddCategory = () => {
                     <p className="m-0" style={{ position: "relative", right: "5px" }}><i className='bi bi-plus' /> ADD CATEGORY</p>
                 </div>
             </div>
-            <Modal show={addShow} onHide={handleClose}>
-                <Modal.Header style={{ backgroundColor: "#e6e6e6" }} closeButton>
+            <Modal show={addShow} onHide={handleClose} style={{ fontFamily: "serif" }}>
+                <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>ADD CATEGORY</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ background: "aliceblue" }}>
@@ -78,6 +79,7 @@ const AddCategory = () => {
                                     .then(alert(`${values.catName} - Category Added Successfully`))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
+                                    .then(handleClose())
                                 // categorySubmit();
                                 // resetForm();
                                 // setSubmitting(false);
