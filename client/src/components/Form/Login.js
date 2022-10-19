@@ -3,6 +3,8 @@ import { Form, Col, Row, Button } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
+import LoginImg from '../../image/IMS-LOGINBACK.png'
+import TitleImg from '../../image/MainBackground.png'
 
 const Login = () => {
 
@@ -19,9 +21,9 @@ const Login = () => {
 
     return (
 
-        <div className="registration-body">
+        <div className="registration-body" style={{ backgroundImage: `url(${LoginImg})`, backgroundRepeat: "no-repeat" }}>
             <div className="form-body p-4 rounded">
-                <div className="text-center rounded shadow" style={{ background: "#5d5d74", color: "white" }}>
+                <div className="text-center rounded shadow" style={{ background: "#5d5d74", color: "white", backgroundImage: `url(${TitleImg})` }}>
                     <h1 className="" style={{ position: "relative" }}>SIGN IN</h1>
                     <span>Welcome To Inventory Management System</span>
                 </div>

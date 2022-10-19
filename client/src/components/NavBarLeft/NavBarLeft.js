@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavleftImg from '../../image/NavbarBackground.png'
 
 const NavBarLeft = () => {
 
     return (
 
-        <div className='navLink container p-4' style={{ fontSize: "20px", backgroundColor: "#dfdbdb"}}>
+        <div className='navLink container p-4 rounded' style={{ fontSize: "20px", backgroundColor: "#dfdbdb", backgroundImage: `url(${NavleftImg})`, height: "auto" }}>
             <Link to="/">
                 <p className="leftMenuLetter"><i className="bi bi-house-fill mr-2"></i> DASHBOARD</p>
             </Link>

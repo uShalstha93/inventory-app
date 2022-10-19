@@ -50,7 +50,7 @@ const AddCategory = () => {
         <>
             <div className="shadow mb-4 pb-2 bg-white rounded btn" style={{ width: "200px" }} onClick={handleShow}>
                 <div className="align-center">
-                    <p className="m-0"><i className='bi bi-plus' /> ADD CATEGORY</p>
+                    <p className="m-0" style={{ position: "relative", right: "5px" }}><i className='bi bi-plus' /> ADD CATEGORY</p>
                 </div>
             </div>
             <Modal show={addShow} onHide={handleClose}>
