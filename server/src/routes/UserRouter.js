@@ -1,11 +1,9 @@
 const express = require('express')
-
 const bcrypt = require('bcrypt')
 const saltRounds = 10
-
 const users = require('../models/UserSchema')
-
 const router = express.Router()
+const jwt = require('jsonwebtoken')
 
 //get user method api
 router.get('/users', async (req, res) => {
@@ -72,10 +70,11 @@ router.post('/login', async (req, res) => {
                             message: "Password Didnot Match!"
                         })
                     }
-                    else {
-                        // console.log(result)
+                    if (result) {
+                        const accessCode = jwt.sign({ userName: req.body.userName }, process.env.TOKEN, { expiresIn: '1hr' })
                         res.json({
-                            message: "Password Matched!"
+                            message: "Password Match!",
+                            _token: accessCode
                         })
                     }
                 })

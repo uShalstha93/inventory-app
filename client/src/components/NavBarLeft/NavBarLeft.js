@@ -6,7 +6,7 @@ const NavBarLeft = () => {
 
     return (
 
-        <div className='navLink container p-4 rounded' style={{ fontSize: "20px", backgroundColor: "#dfdbdb", height: "auto" }}>
+        <div className='navLink container p-4 rounded' style={{ fontSize: "20px" }}>
             <Link to="/dashboard">
                 <p><i className="bi bi-house-fill mr-2"></i> DASHBOARD</p>
             </Link>

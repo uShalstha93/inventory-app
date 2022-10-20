@@ -1,6 +1,5 @@
 const express = require('express')
-const app = express()
-
+// const app = express()
 const category = require('../models/CategorySchema')
 const router = express.Router()
 
@@ -18,7 +17,7 @@ router.get('/', async (req, res) => {
     catch (err) {
         console.log(err)
         res.send({
-            errorMsg: "Unable to get data!",
+            errorMsg: "Unable To Get Category!",
             errorDetail: err
         })
     }
