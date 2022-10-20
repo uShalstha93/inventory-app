@@ -9,6 +9,7 @@ import Products from './components/Pages/Products/Products';
 import Registration from './components/Form/Registration';
 import Login from './components/Form/Login';
 import './wrapper.css';
+import Homepage from './components/Pages/Dashboard/Homepage';
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
 
     // <Router>
     //   <Routes>
+    //     <Route exact path='/' element={<Homepage />} />
     //     <Route path='/register' element={<Registration />} />
     //     <Route path='/login' element={<Login />} />
     //   </Routes>
@@ -29,11 +31,11 @@ const App = () => {
           </div>
           <div className="col-8 p-5" style={{ position: "relative", right: "50px" }}>
             <Routes>
-              <Route exact path='/' element={<Dashboard />} />
+              <Route exact path='/dashboard' element={<Dashboard />} />
               <Route path='/category' element={<Category />} />
               <Route path='/products' element={<Products />} />
-              {/* <Route path='/customers' element={} />
-              <Route path='/orders' element={} /> */}
+              <Route path='/customers' element={null} />
+              <Route path='/orders' element={null} />
             </Routes>
           </div>
         </div>

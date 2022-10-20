@@ -66,6 +66,7 @@ const EditCategory = (props) => {
                                     .then(alert(`${values.catName} - Category Updated Successfully`))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
+                                    .then(editHandleClose)
                                 // categorySubmit();
                                 // resetForm();
                                 // setSubmitting(false);

@@ -12,11 +12,11 @@ const AddCategory = () => {
     const dispatch = useDispatch();
     const { addShow } = useSelector((state) => state.AddCategory)
 
-    const handleShow = () => {
+    const handleCategoryShow = () => {
         dispatch(addShowWindow())
     }
 
-    const handleClose = () => {
+    const handleCategoryClose = () => {
         dispatch(addCloseWindow())
     }
 
@@ -49,12 +49,12 @@ const AddCategory = () => {
 
     return (
         <>
-            <div className="shadow mb-4 pb-2 bg-white rounded btn" style={{ width: "200px" }} onClick={handleShow}>
+            <div className="shadow mb-4 pb-2 bg-white rounded btn" style={{ width: "200px" }} onClick={handleCategoryShow}>
                 <div className="align-center">
                     <p className="m-0" style={{ position: "relative", right: "5px" }}><i className='bi bi-plus' /> ADD CATEGORY</p>
                 </div>
             </div>
-            <Modal show={addShow} onHide={handleClose} style={{ fontFamily: "serif" }}>
+            <Modal show={addShow} onHide={handleCategoryClose} style={{ fontFamily: "serif" }}>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>ADD CATEGORY</Modal.Title>
                 </Modal.Header>
@@ -79,7 +79,7 @@ const AddCategory = () => {
                                     .then(alert(`${values.catName} - Category Added Successfully`))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
-                                    .then(handleClose())
+                                    .then(handleCategoryClose())
                                 // categorySubmit();
                                 // resetForm();
                                 // setSubmitting(false);
@@ -123,7 +123,7 @@ const AddCategory = () => {
                                 </Form.Group>
                                 <Modal.Footer>
                                     <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting}>ADD</Button>
-                                    <Button variant="outline-danger" size="sm" onClick={handleClose}>CLOSE</Button>
+                                    <Button variant="outline-danger" size="sm" onClick={handleCategoryClose}>CLOSE</Button>
                                 </Modal.Footer>
                             </Form>
                         )}

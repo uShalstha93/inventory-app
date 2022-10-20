@@ -13,6 +13,7 @@
     padding-top: 20px;
     font-family: serif;
     /* background: red; */
+    min-width: auto;
 }
 
 .error-message {
