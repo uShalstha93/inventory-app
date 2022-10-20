@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     try {
         // console.log(req.body)
-        category.create(req.body)
+        product.create(req.body)
         res.json({
-            message: "category successfully added!",
+            message: "Product successfully added!",
             categoryDetail: req.body
         })
     }
