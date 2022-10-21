@@ -5,6 +5,7 @@ import AddCategorySlice from "./components/Pages/Category/AddCategorySlice";
 import CategorySlice from "./components/Pages/Category/CategorySlice";
 import EditCategorySlice from "./components/Pages/Category/EditCategorySlice";
 import AddProductSlice from "./components/Pages/Products/AddProductSlice";
+import EditProductSlice from "./components/Pages/Products/EditProductSlice";
 import ProductSlice from "./components/Pages/Products/ProductSlice";
 
 const reducer = combineReducers({
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     Category: CategorySlice,
     EditCategory: EditCategorySlice,
     AddProduct: AddProductSlice,
-    Products: ProductSlice
+    Products: ProductSlice,
+    EditProduct: EditProductSlice,
 });
 
 const store = configureStore({

@@ -4,6 +4,7 @@ import AddProducts from './AddProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { showProductList } from './ProductSlice'
 import loading from '../../../image/LoadingIMG.gif'
+import EditProducts from './EditProducts'
 
 const Products = () => {
 
@@ -12,16 +13,16 @@ const Products = () => {
     const dispatch = useDispatch()
     const { productList } = useSelector((state) => state.Products)
 
-    const [ searchProductName, setSearchProductName ] = useState("")
+    const [searchProductName, setSearchProductName] = useState("")
 
     //get data from database and store in productlist
     const fetchProduct = () => {
         fetch("http://localhost:2000/products")
-        .then((res) => res.json())
-        .then(data => {
-            dispatch(showProductList(data.detail))
-            // console.log(data.detail)
-        })
+            .then((res) => res.json())
+            .then(data => {
+                dispatch(showProductList(data.detail))
+                // console.log(data.detail)
+            })
     }
 
     //searching products
@@ -43,9 +44,9 @@ const Products = () => {
             {/* display product section */}
             <Row>
                 <div>
-                    <input type="text" placeholder="Search..." className="shadow rounded mb-4" 
-                    style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px", border: "none" }}
-                    onKeyUp={(e) => setSearchProductName(e.target.value)} />
+                    <input type="text" placeholder="Search..." className="shadow rounded mb-4"
+                        style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px", border: "none" }}
+                        onKeyUp={(e) => setSearchProductName(e.target.value)} />
                     <i className="bi bi-search" style={{ position: "relative", right: "3rem" }} />
                 </div>
                 <div className="col-9 bg-white rounded shadow">
@@ -70,6 +71,12 @@ const Products = () => {
                                         <td>{item.productCategory}</td>
                                         <td>{item.productQty}</td>
                                         <td>{item.productPrice}</td>
+                                        <td>
+                                            <div className="row">
+                                                <div className="col-1 mx-1"><EditProducts EditProducts={item} /></div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div>}
