@@ -32,7 +32,7 @@ Tech Stack:
 - [ ] Product
     - [x] Search Product
     - [x] Show Product
-    - [ ] Add Product
+    - [x] Add Product
     - [ ] Edit Product
     - [ ] Delete Product
 
