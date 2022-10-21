@@ -63,7 +63,11 @@ const EditCategory = (props) => {
                                     })
                                 }
                                 fetch("http://localhost:2000/category", requestOptions)
-                                    .then(alert(`${values.catName} - Category Updated Successfully`))
+                                    // .then(alert(`${values.catName} - Category Updated Successfully`))
+                                    .then((res) => res.json())
+                                    .then(result => {
+                                        alert(result.message)
+                                    })
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                     .then(editHandleClose)

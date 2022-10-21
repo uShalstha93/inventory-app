@@ -87,13 +87,13 @@ const AddProducts = () => {
                                     })
                                 }
                                 fetch("http://localhost:2000/products", requestOptions)
-                                .then((res) => res.json())
-                                .then(result => {
-                                    alert(result.message)
-                                })
-                                .then(resetForm())
-                                .then(setSubmitting(false))
-                                .then(handleProductClose())
+                                    .then((res) => res.json())
+                                    .then(result => {
+                                        alert(result.message)
+                                    })
+                                    .then(resetForm())
+                                    .then(setSubmitting(false))
+                                    .then(handleProductClose())
                             }, 500);
                         }}
                     >
@@ -123,9 +123,11 @@ const AddProducts = () => {
                                         <Form.Select id="selectCategory" type="text" name="productCategory" onChange={handleChange} value={values.productCategory} style={{ borderColor: touched.productCategory && errors.productCategory ? "red" : null }}>
                                             <option>Select Category</option>
                                             {categoryName.map((item, idx) => {
-                                                return (
-                                                    <option>{item.catName}</option>
-                                                )
+                                                if (item.catStatus === "Active") {
+                                                    return (
+                                                        <option>{item.catName}</option>
+                                                    )
+                                                }
                                             })}
                                         </Form.Select>
                                         {touched.productCategory && errors.productCategory ? (
