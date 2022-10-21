@@ -62,7 +62,11 @@ const Registration = () => {
                             }
                             console.log(requestOptions.body)
                             fetch("http://localhost:2000/register", requestOptions)
-                                .then(alert(`${values.fullname} - Added Successfully`))
+                                // .then(alert(`${values.fullname} - Added Successfully`))
+                                .then((res) => res.json())
+                                .then(result => {
+                                    alert(result.message)
+                                })
                                 .then(resetForm())
                                 .then(setSubmitting(false))
                             // categorySubmit();

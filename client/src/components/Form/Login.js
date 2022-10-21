@@ -44,7 +44,11 @@ const Login = () => {
                             }
                             // console.log(requestOptions.body)
                             fetch("http://localhost:2000/login", requestOptions)
-                                .then(alert(`${values.username} - Login Successfully`))
+                                // .then(alert(`${values.username} - Login Successfully`))
+                                .then((res) => res.json())
+                                .then(result => {
+                                    alert(result.message)
+                                })
                                 .then(resetForm())
                                 .then(setSubmitting(false))
                             // categorySubmit();
