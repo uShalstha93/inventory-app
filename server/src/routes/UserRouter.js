@@ -72,10 +72,17 @@ router.post('/login', async (req, res) => {
                     }
                     if (result) {
                         const accessCode = jwt.sign({ userName: req.body.userName }, process.env.TOKEN, { expiresIn: '1hr' })
-                        res.json({
-                            message: "Password Match!",
-                            _token: accessCode
+                        users.findOneAndUpdate({ userName: req.body.userName }, {
+                            $set: {
+                                token: accessCode
+                            }
                         })
+                            .then(result => {
+                                res.json({
+                                    message: "Password Match!",
+                                    _token: accessCode
+                                })
+                            })
                     }
                 })
             })
