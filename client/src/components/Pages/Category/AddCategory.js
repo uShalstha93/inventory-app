@@ -76,7 +76,11 @@ const AddCategory = () => {
                                     })
                                 }
                                 fetch("http://localhost:2000/category", requestOptions)
-                                    .then(alert(`${values.catName} - Category Added Successfully`))
+                                    // .then(alert(`${values.catName} - Category Added Successfully`))
+                                    .then((res) => res.json())
+                                    .then(result => {
+                                        alert(result.message)
+                                    })
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                     .then(handleCategoryClose())
@@ -84,7 +88,6 @@ const AddCategory = () => {
                                 // resetForm();
                                 // setSubmitting(false);
                             }, 500);
-
                         }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (

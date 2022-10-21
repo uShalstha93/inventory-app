@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Modal, Form, Col, Row, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProductShowWindow, addProductCloseWindow } from './AddProductSlice'
+import { addProductShowWindow, addProductCloseWindow, showCategoryName } from './AddProductSlice'
 import '../../../wrapper.css'
 import TitleImg from '../../../image/MainBackground.png'
 import { Formik } from 'formik'
@@ -10,7 +10,7 @@ import * as Yup from 'yup'
 const AddProducts = () => {
 
     const dispatch = useDispatch()
-    const { addProductShow } = useSelector((state) => state.AddProduct)
+    const { addProductShow, categoryName } = useSelector((state) => state.AddProduct)
     // console.log(useSelector((state) => state.AddProduct))
 
     const handleProductShow = () => {
@@ -20,6 +20,20 @@ const AddProducts = () => {
     const handleProductClose = () => {
         dispatch(addProductCloseWindow())
     }
+
+    const fetchCategoryName = () => {
+        fetch("http://localhost:2000/category")
+            .then((res) => res.json())
+            .then(data => {
+                dispatch(showCategoryName(data.detail))
+                // console.log(data.detail)
+            })
+    }
+
+    useEffect(() => {
+        fetchCategoryName()
+    }, [])
+
 
     const validateAddProductSchema = Yup.object().shape({
         productID: Yup.number()
@@ -59,8 +73,28 @@ const AddProducts = () => {
                         initialValues={{ productID: "", productName: "", productCategory: "", productQty: "", productPrice: "" }}
                         validationSchema={validateAddProductSchema}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
-
-
+                            setSubmitting(true);
+                            setTimeout(() => {
+                                const requestOptions = {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        productID: values.productID,
+                                        productName: values.productName,
+                                        productCategory: values.productCategory,
+                                        productQty: values.productQty,
+                                        productPrice: values.productPrice
+                                    })
+                                }
+                                fetch("http://localhost:2000/products", requestOptions)
+                                .then((res) => res.json())
+                                .then(result => {
+                                    alert(result.message)
+                                })
+                                .then(resetForm())
+                                .then(setSubmitting(false))
+                                .then(handleProductClose())
+                            }, 500);
                         }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
@@ -88,6 +122,11 @@ const AddProducts = () => {
                                     <Col sm="5">
                                         <Form.Select id="selectCategory" type="text" name="productCategory" onChange={handleChange} value={values.productCategory} style={{ borderColor: touched.productCategory && errors.productCategory ? "red" : null }}>
                                             <option>Select Category</option>
+                                            {categoryName.map((item, idx) => {
+                                                return (
+                                                    <option>{item.catName}</option>
+                                                )
+                                            })}
                                         </Form.Select>
                                         {touched.productCategory && errors.productCategory ? (
                                             <Col className="error-message">{errors.productCategory}</Col>
@@ -113,7 +152,7 @@ const AddProducts = () => {
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button variant="outline-primary" size="sm" type="submit">ADD</Button>
+                                    <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting}>ADD</Button>
                                     <Button variant="outline-danger" size="sm" onClick={handleProductClose} >CLOSE</Button>
                                 </Modal.Footer>
                             </Form>

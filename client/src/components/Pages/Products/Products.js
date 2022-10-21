@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Row, Table } from 'react-bootstrap'
 import AddProducts from './AddProducts'
 import { useDispatch, useSelector } from 'react-redux'
-import { showCategoryName, showProductList } from './ProductSlice'
+import { showProductList } from './ProductSlice'
 import loading from '../../../image/LoadingIMG.gif'
 
 const Products = () => {
@@ -23,16 +23,6 @@ const Products = () => {
             // console.log(data.detail)
         })
     }
-
-    const fetchCategoryName = () => {
-        fetch("http://localhost:2000/category")
-        .then((res) => res.json())
-        .then(data2 => {
-            dispatch(showCategoryName(data2.detail))
-            // console.log(data2.detail)
-        })
-    }
-    // fetchCategoryName()
 
     //searching products
     const searchProduct = productList.filter((pItem) => {
