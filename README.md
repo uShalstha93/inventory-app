@@ -7,10 +7,11 @@ Tech Stack:
 - React Router
 - Redux
 - React Bootstrap
-- Formik & Yup for Form Validation
+- Formik & Yup for Form Validation in React
 - MongoDB
 - Node JS
 - Express JS
+- JsonWebToken Authentication
 
 
 ## Features
@@ -29,8 +30,8 @@ Tech Stack:
     - [x] Delete Category
 
 - [ ] Product
-    - [ ] Search Product
-    - [ ] Show Product
+    - [x] Search Product
+    - [x] Show Product
     - [ ] Add Product
     - [ ] Edit Product
     - [ ] Delete Product
