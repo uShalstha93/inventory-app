@@ -78,6 +78,9 @@ const Login = () => {
                                     ) : null}
                                 </Col>
                             </Form.Group>
+                            <Form.Group className="mb-2">
+                                <Form.Text style={{ position: "relative", left: "9rem" }}>Forget Password ?</Form.Text>
+                            </Form.Group>
                             <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN IN</Button>
                             <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "2rem" }}>
                                 Already Have Account ? <Link to="/register">REGISTER</Link>
