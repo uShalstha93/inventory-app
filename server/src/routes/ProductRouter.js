@@ -41,4 +41,31 @@ router.post('/', async (req, res) => {
     }
 })
 
+//update product api
+router.put('/', async (req, res) => {
+    try {
+        product.findOneAndUpdate({ productID: req.body.productID }, {
+            $set: {
+                productName: req.body.productName,
+                productCategory: req.body.productCategory,
+                productQty: req.body.productQty,
+                productPrice: req.body.productPrice
+            }
+        })
+            .then(result => {
+                res.json({
+                    message: "Product Info Updated!!",
+                    productDetail: req.body
+                })
+            })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to update data!",
+            errorDetail: err
+        })
+    }
+})
+
 module.exports = router

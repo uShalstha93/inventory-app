@@ -58,7 +58,28 @@ const EditProducts = (props) => {
                         initialValues={{ productID: currentSelectedProduct.productID, productName: currentSelectedProduct.productName, productCategory: currentSelectedProduct.productCategory, productQty: currentSelectedProduct.productQty, productPrice: currentSelectedProduct.productPrice }}
                         validationSchema={validateUpdateProductSchema}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
-
+                            setSubmitting(true);
+                            setTimeout(() => {
+                                const requestOptions = {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        productID: values.productID,
+                                        productName: values.productName,
+                                        productCategory: values.productCategory,
+                                        productQty: values.productQty,
+                                        productPrice: values.productPrice
+                                    })
+                                }
+                                fetch("http://localhost:2000/products", requestOptions)
+                                    .then((res) => res.json())
+                                    .then(result => {
+                                        alert(result.message)
+                                    })
+                                    .then(resetForm())
+                                    .then(setSubmitting(false))
+                                    .then(editHandleClose)
+                            }, 500)
                         }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
@@ -66,7 +87,7 @@ const EditProducts = (props) => {
                                 <Form.Group as={Row} className="mb-3" controlId="productID">
                                     <Form.Label column sm="2">ID :</Form.Label>
                                     <Col sm="5">
-                                        <Form.Control type="text" name="productID" placeholder="Enter Product ID" onChange={handleChange} defaultValue={values.productID} style={{ borderColor: touched.productID && errors.productID ? "red" : null }} />
+                                        <Form.Control type="text" name="productID" placeholder="Enter Product ID" onChange={handleChange} defaultValue={values.productID} style={{ borderColor: touched.productID && errors.productID ? "red" : null }} disabled />
                                         {touched.productID && errors.productID ? (
                                             <Col className="error-message">{errors.productID}</Col>
                                         ) : null}
@@ -118,7 +139,7 @@ const EditProducts = (props) => {
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting}>ADD</Button>
+                                    <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting}>UPDATE</Button>
                                     <Button variant="outline-danger" size="sm" onClick={editHandleClose} >CLOSE</Button>
                                 </Modal.Footer>
                             </Form>
