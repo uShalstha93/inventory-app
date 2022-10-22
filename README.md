@@ -33,7 +33,7 @@ Tech Stack:
     - [x] Search Product
     - [x] Show Product
     - [x] Add Product
-    - [ ] Edit Product
+    - [x] Edit Product
     - [ ] Delete Product
 
 - [ ] Customers
