@@ -68,4 +68,24 @@ router.put('/', async (req, res) => {
     }
 })
 
+//delete product api
+router.delete('/', async (req, res) => {
+    try {
+        product.deleteOne({ productID: req.body.productID })
+        .then(result => {
+            res.json({
+                message: "Product Deleted!!",
+                productDetail: req.body
+            })
+        })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to Delete Product",
+            errorDetail: err
+        })
+    }
+})
+
 module.exports = router

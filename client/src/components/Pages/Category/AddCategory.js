@@ -5,10 +5,10 @@ import { addShowWindow, addCloseWindow } from './AddCategorySlice';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import '../../../wrapper.css';
-import TitleImg from '../../../image/MainBackground.png'
+import TitleImg from '../../../image/MainBackground.png';
 
 const AddCategory = () => {
-    
+
     const dispatch = useDispatch();
     const { addShow } = useSelector((state) => state.AddCategory)
 

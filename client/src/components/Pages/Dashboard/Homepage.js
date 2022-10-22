@@ -4,6 +4,7 @@ import Footer from '../../Footer/Footer'
 import NavBar from '../../NavBar/NavBar'
 import NavBarLeft from '../../NavBarLeft/NavBarLeft'
 import DashboardIMG from '../../../image/DashboardIMG.jpg'
+// import ToastExample from '../Users/Toast'
 
 const Homepage = () => {
 
@@ -21,6 +22,7 @@ const Homepage = () => {
                     </div>
                 </div>
             </div>
+            {/* <ToastExample /> */}
             <Footer />
         </>
 

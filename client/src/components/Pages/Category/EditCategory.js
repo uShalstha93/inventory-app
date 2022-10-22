@@ -34,7 +34,6 @@ const EditCategory = (props) => {
             .required("* Status is Required!!")
     })
 
-
     return (
 
         <>

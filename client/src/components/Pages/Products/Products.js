@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showProductList } from './ProductSlice'
 import loading from '../../../image/LoadingIMG.gif'
 import EditProducts from './EditProducts'
+import DeleteProduct from './DeleteProduct'
 
 const Products = () => {
 
@@ -74,7 +75,7 @@ const Products = () => {
                                         <td>
                                             <div className="row">
                                                 <div className="col-1 mx-1"><EditProducts EditProducts={item} /></div>
-                                                <div className="col-1"></div>
+                                                <div className="col-1"><DeleteProduct DelProduct={item} /></div>
                                             </div>
                                         </td>
                                     </tr>

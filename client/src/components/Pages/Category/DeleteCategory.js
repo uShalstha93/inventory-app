@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 
 const DeleteCategory = (props) => {
 
-    const [currentDeleteItem, setCurrentDeleteItem] = useState({})
+    const [ currentDeleteItem, setCurrentDeleteItem ] = useState({})
 
-    const deleteCategory = () => {
+    const delCategory = () => {
+
         setCurrentDeleteItem(props.DeleteItem)
-        // console.log(currentDeleteItem.catID)
+        
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -16,7 +17,10 @@ const DeleteCategory = (props) => {
         }
         if (window.confirm(`Are You Sure? You want to delete Category - ${currentDeleteItem.catName}`)) {
             fetch("http://localhost:2000/category", requestOptions)
-                .then(alert(`${currentDeleteItem.catName} Deleted Successfully!!`))
+                .then((res) => res.json())
+                .then(result => {
+                    alert(result.message)
+                })
         }
         else {
             alert(`Failed to Delete category - ${currentDeleteItem.catName}!!`)
@@ -26,7 +30,7 @@ const DeleteCategory = (props) => {
     return (
 
         <div>
-            <i className="bi bi-trash3 btn-sm" onClick={deleteCategory} />
+            <i className="bi bi-trash3 btn-sm" onClick={delCategory} />
         </div>
 
     )
