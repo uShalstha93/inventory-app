@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Modal, Form, Col, Row, Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Modal, Form, Col, Row, Button, Toast, ToastContainer } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductShowWindow, addProductCloseWindow, showCategoryName } from './AddProductSlice'
 import '../../../wrapper.css'
@@ -12,6 +12,9 @@ const AddProducts = () => {
     const dispatch = useDispatch()
     const { addProductShow, categoryName } = useSelector((state) => state.AddProduct)
     // console.log(useSelector((state) => state.AddProduct))
+
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
 
     const handleProductShow = () => {
         dispatch(addProductShowWindow())
@@ -89,8 +92,9 @@ const AddProducts = () => {
                                 fetch("http://localhost:2000/products", requestOptions)
                                     .then((res) => res.json())
                                     .then(result => {
-                                        alert(result.message)
+                                        setAlertMsg(result.message)
                                     })
+                                    .then(setShowAlert(true))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                     .then(handleProductClose())
@@ -162,6 +166,14 @@ const AddProducts = () => {
                     </Formik>
                 </Modal.Body>
             </Modal>
+            <ToastContainer position="top-end" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
+                        <strong className="me-auto">ADD PRODUCT</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
     )
 }

@@ -18,6 +18,7 @@ const Products = () => {
 
     //get data from database and store in productlist
     const fetchProduct = () => {
+        
         fetch("http://localhost:2000/products")
             .then((res) => res.json())
             .then(data => {

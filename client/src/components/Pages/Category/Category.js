@@ -18,6 +18,7 @@ const Category = () => {
 
     //get data and store in categorylist from backend
     const fetchCategory = () => {
+
         fetch("http://localhost:2000/category")
             .then((res) => res.json())
             .then(data => {
@@ -50,9 +51,9 @@ const Category = () => {
                 {/* {JSON.stringify(categoryList)} */}
                 <div>
                     {/* <i className="bi bi-search" style={{ position: "relative" }} /> */}
-                    <input type="text" placeholder="Search..." className="shadow rounded mb-4" 
+                    <input type="text" placeholder="Search..." className="shadow rounded mb-4"
                         style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px", border: "none" }}
-                        onKeyUp={(e) => setSearchName(e.target.value) } />
+                        onKeyUp={(e) => setSearchName(e.target.value)} />
                     <i className="bi bi-search" style={{ position: "relative", right: "3rem" }} />
                 </div>
                 <div className="col-9 bg-white rounded shadow">

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Modal, Form, Button, Row, Col, Toast, ToastContainer } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { editProductShowWindow, editProductCloseWindow } from './EditProductSlice'
 import { Formik } from 'formik'
@@ -12,6 +12,9 @@ const EditProducts = (props) => {
     const dispatch = useDispatch()
     const { editProductShow, currentSelectedProduct } = useSelector((state) => state.EditProduct)
     const { categoryName } = useSelector((state) => state.AddProduct)
+
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
 
     const editHandleShow = () => {
         dispatch(editProductShowWindow(props.EditProducts))
@@ -73,12 +76,13 @@ const EditProducts = (props) => {
                                 fetch("http://localhost:2000/products", requestOptions)
                                     .then((res) => res.json())
                                     .then(result => {
-                                        alert(result.message)
+                                        setAlertMsg(result.message)
                                     })
+                                    .then(setShowAlert(true))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                     .then(editHandleClose)
-                            }, 500)
+                            }, 100)
                         }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
@@ -146,6 +150,14 @@ const EditProducts = (props) => {
                     </Formik>
                 </Modal.Body>
             </Modal>
+            <ToastContainer position="top-end" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
+                        <strong className="me-auto">EDIT PRODUCT</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
 
     )

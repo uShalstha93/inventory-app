@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, Form, Button, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Modal, Form, Button, Row, Col, ToastContainer, Toast } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { addShowWindow, addCloseWindow } from './AddCategorySlice';
 import { Formik } from 'formik';
@@ -11,6 +11,9 @@ const AddCategory = () => {
 
     const dispatch = useDispatch();
     const { addShow } = useSelector((state) => state.AddCategory)
+
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
 
     const handleCategoryShow = () => {
         dispatch(addShowWindow())
@@ -79,15 +82,16 @@ const AddCategory = () => {
                                     // .then(alert(`${values.catName} - Category Added Successfully`))
                                     .then((res) => res.json())
                                     .then(result => {
-                                        alert(result.message)
+                                        setAlertMsg(result.message)
                                     })
+                                    .then(setShowAlert(true))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                     .then(handleCategoryClose())
                                 // categorySubmit();
                                 // resetForm();
                                 // setSubmitting(false);
-                            }, 500);
+                            }, 100);
                         }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
@@ -133,6 +137,14 @@ const AddCategory = () => {
                     </Formik>
                 </Modal.Body>
             </Modal>
+            <ToastContainer position="top-end" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
+                        <strong className="me-auto">ADD CATEGORY</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
     )
 }

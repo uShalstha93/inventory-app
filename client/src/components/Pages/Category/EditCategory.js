@@ -1,5 +1,5 @@
-import React from 'react'
-import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Modal, Form, Button, Row, Col, ToastContainer, Toast } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { editShowWindow, editCloseWindow } from './EditCategorySlice'
 import { Formik } from 'formik'
@@ -12,6 +12,9 @@ const EditCategory = (props) => {
     const dispatch = useDispatch();
     const { editShow, currentSelectedItem } = useSelector((state) => state.EditCategory)
     // console.log(currentSelectedItem)
+
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
 
     const editHandleShow = () => {
         dispatch(editShowWindow(props.EditItem))
@@ -65,15 +68,16 @@ const EditCategory = (props) => {
                                     // .then(alert(`${values.catName} - Category Updated Successfully`))
                                     .then((res) => res.json())
                                     .then(result => {
-                                        alert(result.message)
+                                        setAlertMsg(result.message)
                                     })
+                                    .then(setShowAlert(true))
                                     .then(resetForm())
                                     .then(setSubmitting(false))
                                     .then(editHandleClose)
                                 // categorySubmit();
                                 // resetForm();
                                 // setSubmitting(false);
-                            }, 500);
+                            }, 100);
 
                         }}
                     >
@@ -120,8 +124,15 @@ const EditCategory = (props) => {
 
                     </Formik>
                 </Modal.Body>
-
             </Modal>
+            <ToastContainer position="top-end" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
+                        <strong className="me-auto">UPDATE CATEGORY</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
     )
 }
