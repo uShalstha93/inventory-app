@@ -2,13 +2,15 @@ import React from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import LoginImg from '../../image/IMS-LOGINBACK.png'
 import TitleImg from '../../image/MainBackground.png'
 
 const Login = () => {
 
     document.title = `Sign In - Inventory`
+
+    const navigate = useNavigate()
 
     const validateLoginSchema = Yup.object().shape({
         username: Yup.string()
@@ -47,7 +49,16 @@ const Login = () => {
                                 // .then(alert(`${values.username} - Login Successfully`))
                                 .then((res) => res.json())
                                 .then(result => {
-                                    alert(result.message)
+                                    // alert(result.message)
+                                    // const BrowserToken = localStorage.setItem("token", result._token)
+                                    // BrowserToken !== undefined ? navigate('/') : alert(result.message)
+                                    if (result._token) {
+                                        localStorage.setItem("token", result._token)
+                                        navigate('/')
+                                    }
+                                    else {
+                                        alert(result.message)
+                                    }
                                 })
                                 .then(resetForm())
                                 .then(setSubmitting(false))

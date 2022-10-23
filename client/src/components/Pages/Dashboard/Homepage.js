@@ -1,5 +1,5 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Footer from '../../Footer/Footer'
 import NavBar from '../../NavBar/NavBar'
 import NavBarLeft from '../../NavBarLeft/NavBarLeft'
@@ -8,11 +8,19 @@ import DashboardIMG from '../../../image/DashboardIMG.jpg'
 
 const Homepage = () => {
 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate('/login')
+        }
+    }, [])
+
     return (
 
         <>
             <NavBar />
-            <div className="wrapper" style={{ backgroundImage: `url(${DashboardIMG})`}}>
+            <div className="wrapper" style={{ backgroundImage: `url(${DashboardIMG})` }}>
                 <div className='row'>
                     <div className="col-2 p-4" style={{ minWidth: "250px" }}>
                         <NavBarLeft />
