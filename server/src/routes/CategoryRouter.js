@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         // console.log(req.body)
         category.create(req.body)
         res.json({
-            message: "category successfully added!",
+            message: `${req.body.catName} - Category Added Successfully!!`,
             categoryDetail: req.body
         })
     }
@@ -53,7 +53,7 @@ router.put('/', async (req, res) => {
         })
             .then(result => {
                 res.json({
-                    message: "category info updated!!",
+                    message: `Category Info Updated Successfully!!`,
                     categoryDetail: req.body
                 })
             })
@@ -73,7 +73,7 @@ router.delete('/', async (req, res) => {
         category.deleteOne({ catID: req.body.catID })
             .then(result => {
                 res.json({
-                    message: "category deleted!!",
+                    message: `${req.body.catName} - Category Deleted Successfully!!`,
                     categoryDetail: req.body
                 })
             })

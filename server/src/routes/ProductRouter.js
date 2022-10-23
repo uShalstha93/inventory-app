@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
         // console.log(req.body)
         product.create(req.body)
         res.json({
-            message: "Product successfully added!",
+            message: `${req.body.productName} - Product Added Successfully!!`,
             categoryDetail: req.body
         })
     }
@@ -54,7 +54,7 @@ router.put('/', async (req, res) => {
         })
             .then(result => {
                 res.json({
-                    message: "Product Info Updated!!",
+                    message: "Product Info Updated Successfully!!",
                     productDetail: req.body
                 })
             })
@@ -74,7 +74,7 @@ router.delete('/', async (req, res) => {
         product.deleteOne({ productID: req.body.productID })
         .then(result => {
             res.json({
-                message: "Product Deleted!!",
+                message: `${req.body.productName} - Product Deleted Successfully!!`,
                 productDetail: req.body
             })
         })
