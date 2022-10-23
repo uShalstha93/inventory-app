@@ -7,13 +7,10 @@ import Registration from './components/Form/Registration';
 import Login from './components/Form/Login';
 import './wrapper.css';
 import Homepage from './components/Pages/Dashboard/Homepage';
-import ToastExample from './components/Pages/Users/Toast';
 
 const App = () => {
 
   return (
-
-    // <ToastExample />
 
     <Router>
       <Routes>
