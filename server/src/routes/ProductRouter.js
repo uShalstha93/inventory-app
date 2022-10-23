@@ -74,7 +74,7 @@ router.delete('/', async (req, res) => {
         product.deleteOne({ productID: req.body.productID })
         .then(result => {
             res.json({
-                message: `${req.body.productName} - Product Deleted Successfully!!`,
+                message: `Product Deleted Successfully!!`,
                 productDetail: req.body
             })
         })

@@ -73,7 +73,7 @@ router.delete('/', async (req, res) => {
         category.deleteOne({ catID: req.body.catID })
             .then(result => {
                 res.json({
-                    message: `${req.body.catName} - Category Deleted Successfully!!`,
+                    message: `Category Deleted Successfully!!`,
                     categoryDetail: req.body
                 })
             })
