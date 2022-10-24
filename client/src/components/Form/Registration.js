@@ -1,15 +1,18 @@
-import React from 'react'
-import { Form, Col, Row, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Col, Row, Button, ToastContainer, Toast } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
 import RegisterImg from '../../image/IMS-LOGINBACK.png'
-import TitleImg  from '../../image/MainBackground.png'
+import TitleImg from '../../image/MainBackground.png'
 // import '../../../wrapper.css'
 
 const Registration = () => {
 
     document.title = `Register - Inventory`
+
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
 
     const validateRegisterSchema = Yup.object().shape({
         username: Yup.string()
@@ -65,8 +68,9 @@ const Registration = () => {
                                 // .then(alert(`${values.fullname} - Added Successfully`))
                                 .then((res) => res.json())
                                 .then(result => {
-                                    alert(result.message)
+                                    setAlertMsg(result.message)
                                 })
+                                .then(setShowAlert(true))
                                 .then(resetForm())
                                 .then(setSubmitting(false))
                             // categorySubmit();
@@ -140,6 +144,14 @@ const Registration = () => {
                     )}
                 </Formik>
             </div>
+            <ToastContainer position="center" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={9000} style={{ fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
+                        <strong className="me-auto">REGISTRATION</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </div>
 
     )

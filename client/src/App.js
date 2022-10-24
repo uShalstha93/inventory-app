@@ -7,7 +7,7 @@ import Registration from './components/Form/Registration';
 import Login from './components/Form/Login';
 import './wrapper.css';
 import Homepage from './components/Pages/Dashboard/Homepage';
-import Toast from '../src/components/Pages/Users/Toast'
+// import Toast from '../src/components/Pages/Users/Toast'
 
 const App = () => {
 

@@ -126,12 +126,10 @@ const AddProducts = () => {
                                     <Col sm="5">
                                         <Form.Select id="selectCategory" type="text" name="productCategory" onChange={handleChange} value={values.productCategory} style={{ borderColor: touched.productCategory && errors.productCategory ? "red" : null }}>
                                             <option>Select Category</option>
-                                            {categoryName.map((item, idx) => {
-                                                if (item.catStatus === "Active") {
-                                                    return (
-                                                        <option>{item.catName}</option>
-                                                    )
-                                                }
+                                            {categoryName.map((item,idx) => {
+                                                return (
+                                                    item.catStatus === "Active" ? <option>{item.categoryName}</option> : null
+                                                )
                                             })}
                                         </Form.Select>
                                         {touched.productCategory && errors.productCategory ? (

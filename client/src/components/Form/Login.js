@@ -1,5 +1,5 @@
-import React from 'react'
-import { Form, Col, Row, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Col, Row, Button, ToastContainer, Toast } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,6 +11,9 @@ const Login = () => {
     document.title = `Sign In - Inventory`
 
     const navigate = useNavigate()
+
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
 
     const validateLoginSchema = Yup.object().shape({
         username: Yup.string()
@@ -57,7 +60,8 @@ const Login = () => {
                                         navigate('/')
                                     }
                                     else {
-                                        alert(result.message)
+                                        setShowAlert(true)
+                                        setAlertMsg(result.message)
                                     }
                                 })
                                 .then(resetForm())
@@ -100,7 +104,14 @@ const Login = () => {
                     )}
                 </Formik>
             </div>
-
+            <ToastContainer position="center" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "red", color: "black" }}>
+                        <strong className="me-auto">LOG IN</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </div>
 
     )
