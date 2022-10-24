@@ -8,14 +8,15 @@
 
 .wrapper {
     /* min-height: auto; */
-    padding-bottom: 300px;
+    /* position: absolute; */
+    padding-bottom: 280px;
     background-color: #dfdbdb;
     margin-top: 36px;
     padding-top: 20px;
     font-family: serif;
     /* background: red; */
-    /* min-width: auto; */
-    display: block;
+    /* min-width: 80px; */
+    display: flex;
 }
 
 .error-message {

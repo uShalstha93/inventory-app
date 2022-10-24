@@ -25,7 +25,7 @@ const Homepage = () => {
                     <div className="col-2 p-4" style={{ minWidth: "250px" }}>
                         <NavBarLeft />
                     </div>
-                    <div className="col-8" style={{ position: "relative", paddingTop: "2.5rem" }}>
+                    <div className="col-8" style={{ position: "relative", paddingTop: "2.8rem" }}>
                         <Outlet />
                     </div>
                 </div>
