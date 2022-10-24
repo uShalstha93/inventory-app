@@ -111,11 +111,9 @@ const EditProducts = (props) => {
                                         <Form.Select id="selectCategory" type="text" name="productCategory" onChange={handleChange} defaultValue={values.productCategory} style={{ borderColor: touched.productCategory && errors.productCategory ? "red" : null }}>
                                             <option>Select Category</option>
                                             {categoryName.map((item, idx) => {
-                                                if (item.catStatus === "Active") {
-                                                    return (
-                                                        <option>{item.catName}</option>
-                                                    )
-                                                }
+                                                return (
+                                                    item.catStatus === "Active" ? <option>{item.catName}</option> : null
+                                                )
                                             })}
                                         </Form.Select>
                                         {touched.productCategory && errors.productCategory ? (
@@ -151,7 +149,7 @@ const EditProducts = (props) => {
                 </Modal.Body>
             </Modal>
             <ToastContainer position="top-end" className="p-3">
-                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "45rem", fontSize: "15px" }} autohide>
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
                     <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
                         <strong className="me-auto">EDIT PRODUCT</strong>
                     </Toast.Header>

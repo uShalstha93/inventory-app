@@ -15,7 +15,7 @@ function ToastExample() {
     return (
         <>
             <ToastContainer position="top-end" className="p-3">
-                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={3000} style={{ position: "relative", top: "80px" }} autohide>
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", top: "80px" }} autohide>
                     <Toast.Header>
                         <strong className="me-auto">Category</strong>
                     </Toast.Header>

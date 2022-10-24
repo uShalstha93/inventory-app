@@ -126,7 +126,7 @@ const EditCategory = (props) => {
                 </Modal.Body>
             </Modal>
             <ToastContainer position="top-end" className="p-3">
-                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "45rem", fontSize: "15px" }} autohide>
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
                     <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
                         <strong className="me-auto">UPDATE CATEGORY</strong>
                     </Toast.Header>
