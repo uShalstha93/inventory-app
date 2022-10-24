@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../image/IMSLogoP.png';
 import TitleImg from '../../image/MainBackground.png'
 import { Nav, Container, Navbar, NavDropdown, Button } from 'react-bootstrap';
@@ -26,6 +26,13 @@ const NavBar = () => {
     //     color: "white"
     // }
 
+    const navigate = useNavigate()
+
+    const logout = () => {
+        localStorage.removeItem("token")
+        navigate('/login')
+    }
+
     return (
 
         // <div className='row shadow rounded m-0 p-3' style={{ backgroundImage: `url(${TitleImg})`, position: "fixed", width: "100%", top: 0, zIndex: 1 }}>
@@ -45,7 +52,7 @@ const NavBar = () => {
                         <NavDropdown title="UserName" id="collasible-nav-dropdown">
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
-                            <NavDropdown.Item>Log Out</NavDropdown.Item>
+                            <NavDropdown.Item as={Button} variant="light" onClick={logout}>Log Out</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
