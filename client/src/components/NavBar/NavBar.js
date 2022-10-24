@@ -33,7 +33,7 @@ const NavBar = () => {
         //     <div style={textStyle}>Inventory Management System</div>
         //     <div style={userStyle}>UserName</div>
         // </div>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ backgroundImage: `url(${TitleImg})` }}>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})` }}>
             <Container>
                 <Navbar.Brand>
                     <Link to="/dashboard">
@@ -44,7 +44,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav style={{ position: "absolute", right: "70px" }}>
-                        <NavDropdown title="userName" id="collasible-nav-dropdown">
+                        <NavDropdown title="UserName" id="collasible-nav-dropdown">
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
                             <NavDropdown.Item>Log Out</NavDropdown.Item>

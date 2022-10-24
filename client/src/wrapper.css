@@ -16,7 +16,7 @@
     font-family: serif;
     /* background: red; */
     /* min-width: 80px; */
-    display: flex;
+    display: block;
 }
 
 .error-message {
