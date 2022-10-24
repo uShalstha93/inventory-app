@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../image/IMSLogoP.png';
 import TitleImg from '../../image/MainBackground.png'
-import { Nav, Container, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Container, Navbar, NavDropdown, Button } from 'react-bootstrap';
 
 const NavBar = () => {
 
@@ -35,15 +35,13 @@ const NavBar = () => {
         // </div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})` }}>
             <Container>
-                <Navbar.Brand>
-                    <Link to="/dashboard">
-                        <img src={Logo} className="d-inline-block" alt="brand" width="70px" />
-                    </Link>
+                <Navbar.Brand as={Link} to='/dashboard'>
+                    <img src={Logo} className="d-inline-block" alt="brand" width="70px" />
                     INVENTORY MANAGEMENT SYSTEM
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav style={{ position: "absolute", right: "70px" }}>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
                         <NavDropdown title="UserName" id="collasible-nav-dropdown">
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
