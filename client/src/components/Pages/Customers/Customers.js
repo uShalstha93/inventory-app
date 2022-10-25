@@ -12,6 +12,12 @@ const Customers = () => {
     const dispatch = useDispatch()
     const { customerList } = useSelector((state) => state.Customers)
 
+    const [searchName, setSearchName] = useState("")
+
+    const searchCustomer = customerList.filter((cItem) => {
+        return cItem.customerName.toLowerCase().includes(searchName)
+    })
+
     const fetchCustomer = () => {
         fetch("http://localhost:2000/customers")
             .then((res) => res.json())
@@ -34,7 +40,7 @@ const Customers = () => {
                 <div>
                     <input type="text" placeholder="Search..." className="shadow rounded mb-4"
                         style={{ position: "relative", right: ".8rem", height: "2.3rem", padding: "15px", width: "200px", border: "none" }}
-                        onKeyUp={null} />
+                        onKeyUp={(e) => setSearchName(e.target.value)} />
                     <i className="bi bi-search" style={{ position: "relative", right: "3rem" }} />
                 </div>
                 <div className="col-9 bg-white rounded shadow">
@@ -50,7 +56,7 @@ const Customers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {customerList.length > 0 ? customerList.map((item, idx) => {
+                            {searchCustomer.length > 0 ? searchCustomer.map((item, idx) => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.customerID}</td>
