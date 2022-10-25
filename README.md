@@ -20,7 +20,7 @@ Tech Stack:
     - [x] Login
     - [x] Registration
 
-- [ ] Inventory Dashboard
+- [ ] Inventory Interactive Dashboard
 
 - [x] Category
     - [x] Search Category
@@ -29,12 +29,12 @@ Tech Stack:
     - [x] Edit Category
     - [x] Delete Category
 
-- [ ] Product
+- [x] Product
     - [x] Search Product
     - [x] Show Product
     - [x] Add Product
     - [x] Edit Product
-    - [ ] Delete Product
+    - [x] Delete Product
 
 - [ ] Customers
     - [ ] Search Customers
