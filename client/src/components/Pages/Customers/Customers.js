@@ -3,6 +3,7 @@ import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { showCustomerList } from './CustomerSlice'
 import loading from '../../../image/LoadingIMG.gif'
+import AddCustomer from './AddCustomer'
 
 const Customers = () => {
 
@@ -27,7 +28,7 @@ const Customers = () => {
 
         <div className="container-fluid">
             <Row>
-                Add Customers
+                <AddCustomer />
             </Row>
             <Row>
                 <div>
