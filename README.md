@@ -12,6 +12,7 @@ Tech Stack:
 - Node JS
 - Express JS
 - JsonWebToken Authentication
+- React Bootstrap Toast for Alert
 
 
 ## Features
