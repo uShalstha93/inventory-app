@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { showCustomerList } from './CustomerSlice'
 import loading from '../../../image/LoadingIMG.gif'
 
 const Customers = () => {
@@ -8,6 +9,19 @@ const Customers = () => {
     document.title = `Customers - Inventory`
 
     const dispatch = useDispatch()
+    const { customerList } = useSelector((state) => state.Customers)
+
+    const fetchCustomer = () => {
+        fetch("http://localhost:2000/customers")
+            .then((res) => res.json())
+            .then(data => {
+                dispatch(showCustomerList(data.detail))
+            })
+    }
+
+    useEffect(() => {
+        fetchCustomer()
+    }, [])
 
     return (
 
@@ -35,7 +49,18 @@ const Customers = () => {
                             </tr>
                         </thead>
                         <tbody>
-
+                            {customerList.length > 0 ? customerList.map((item, idx) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.customerID}</td>
+                                        <td>{item.customerName}</td>
+                                        <td>{item.customerAddress}</td>
+                                        <td>{item.customerContactNo}</td>
+                                        <td>{item.customerEmail}</td>
+                                        <td>Edit/Delete</td>
+                                    </tr>
+                                )
+                            }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div>}
                         </tbody>
                     </Table>
                 </div>
