@@ -22,4 +22,22 @@ router.get('/', async (req, res) => {
     }
 })
 
+//post customer method API
+router.post('/', async(req, res) => {
+    try {
+        customer.create(req.body)
+        res.json({
+            message: `${req.body.customerName} - Customer Added Successfully!!`,
+            customerDetail: req.body
+        })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to Post Data in Database!!",
+            errorDetail: err
+        })
+    }
+})
+
 module.exports = router

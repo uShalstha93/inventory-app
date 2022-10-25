@@ -60,9 +60,31 @@ const AddCustomer = () => {
                     <Formik
                         initialValues={{ customerID: "", customerName: "", customerAddress: "", customerContactNo: "", customerEmail: "" }}
                         validationSchema={validateAddCustomerSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => (
+                        onSubmit={(values, { setSubmitting, resetForm }) => {
                             setSubmitting(true)
-                        )}
+                            setTimeout(() => {
+                                const requestOptions = {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        customerID: values.customerID,
+                                        customerName: values.customerName,
+                                        customerAddress: values.customerAddress,
+                                        customerContactNo: values.customerContactNo,
+                                        customerEmail: values.customerEmail
+                                    })
+                                }
+                                fetch("http://localhost:2000/customers", requestOptions)
+                                    .then((res) => res.json())
+                                    .then(result => {
+                                        setAlertMsg(result.message)
+                                    })
+                                    .then(setShowAlert(true))
+                                    .then(resetForm())
+                                    .then(setSubmitting(false))
+                                    .then(handleCustomerClose())
+                            }, 100);
+                        }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
                             <Form onSubmit={handleSubmit}>
