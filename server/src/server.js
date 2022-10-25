@@ -3,9 +3,11 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 require('dotenv').config()
 const connectDB = require('./db/mongoose')()
+
 const CategoryRouter = require('../src/routes/CategoryRouter')
 const UsersRouter = require('./routes/UserRouter')
 const ProductRouter = require('./routes/ProductRouter')
+const CustomerRouter = require('./routes/CustomerRouter')
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -13,6 +15,7 @@ app.use(bodyParser.json())
 app.use('/', UsersRouter)
 app.use('/category', CategoryRouter)
 app.use('/products', ProductRouter)
+app.use('/customers', CustomerRouter)
 
 app.listen(process.env.port, (err) => {
     if (err) {
