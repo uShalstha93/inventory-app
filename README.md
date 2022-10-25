@@ -37,7 +37,7 @@ Tech Stack:
     - [x] Delete Product
 
 - [ ] Customers
-    - [ ] Search Customers
+    - [x] Search Customers
     - [x] Show Customers
     - [x] Add Customers
     - [ ] Edit Customers
