@@ -111,9 +111,11 @@ const EditProducts = (props) => {
                                         <Form.Select id="selectCategory" type="text" name="productCategory" onChange={handleChange} defaultValue={values.productCategory} style={{ borderColor: touched.productCategory && errors.productCategory ? "red" : null }}>
                                             <option>Select Category</option>
                                             {categoryName.map((item, idx) => {
-                                                return (
-                                                    item.catStatus === "Active" ? <option>{item.catName}</option> : null
-                                                )
+                                                if (item.catStatus === "Active") {
+                                                    return (
+                                                        <option>{item.catName}</option>
+                                                    )
+                                                }
                                             })}
                                         </Form.Select>
                                         {touched.productCategory && errors.productCategory ? (
