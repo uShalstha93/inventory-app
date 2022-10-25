@@ -38,8 +38,8 @@ Tech Stack:
 
 - [ ] Customers
     - [ ] Search Customers
-    - [ ] Show Customers
-    - [ ] Add Customers
+    - [x] Show Customers
+    - [x] Add Customers
     - [ ] Edit Customers
     - [ ] Delete Customers
 
