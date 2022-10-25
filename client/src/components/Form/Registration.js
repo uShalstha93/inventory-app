@@ -30,7 +30,7 @@ const Registration = () => {
             // .max(11, "* Contact Number Must be Equal to 10 numbers!")
             .positive("* Must be positive number!")
             .integer("* Must be integer Value!"),
-        email: Yup.string()
+        email: Yup.string().email()
             .required(" * Email is Required!"),
         password: Yup.string()
             .required("* Password is Required!")

@@ -40,7 +40,7 @@ const AddCustomer = () => {
             .required("* Contact Number is Required!!")
             .positive("* Must be positive number!!")
             .integer("* Must be Integer value!!"),
-        customerEmail: Yup.string()
+        customerEmail: Yup.string().email()
             .required("* Email is Required!!")
     })
 
@@ -124,7 +124,7 @@ const AddCustomer = () => {
                                         ) : null}
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="customerEmail">
+                                <Form.Group as={Row} className="mb-3" controlId="customer Email">
                                     <Form.Label column sm="3">EMAIL :</Form.Label>
                                     <Col sm="8">
                                         <Form.Control type="text" name="customerEmail" placeholder="Enter Customer Email" onChange={handleChange} value={values.customerEmail} style={{ borderColor: touched.customerEmail && errors.customerEmail ? "red" : null }} />
