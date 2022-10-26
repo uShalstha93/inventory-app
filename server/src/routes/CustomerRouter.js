@@ -68,6 +68,7 @@ router.put('/', async (req, res) => {
 //Delete customer method API
 router.delete('/', async (req, res) => {
     try {
+        // console.log(req.body.customerID)
         customer.deleteOne({ customerID: req.body.customerID })
         .then(result => {
             res.json({

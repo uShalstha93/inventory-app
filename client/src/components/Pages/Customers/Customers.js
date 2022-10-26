@@ -5,6 +5,7 @@ import { showCustomerList } from './CustomerSlice'
 import loading from '../../../image/LoadingIMG.gif'
 import AddCustomer from './AddCustomer'
 import EditCustomer from './EditCustomer'
+import DeleteCustomer from './DeleteCustomer'
 
 const Customers = () => {
 
@@ -68,6 +69,7 @@ const Customers = () => {
                                         <td>
                                             <div className="row">
                                                 <div className="col-1 mx-1"><EditCustomer EditItem={item} /></div>
+                                                <div className="col-1"><DeleteCustomer DelCustomerID={item.customerID} DelCustomerName={item.customerName} /></div>
                                             </div>
                                         </td>
                                     </tr>
