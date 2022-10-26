@@ -76,7 +76,7 @@ const Category = () => {
                                         <td>
                                             <div className="row">
                                                 <div className="col-1 mx-1"><EditCategory EditItem={item} /></div>
-                                                <div className="col-1"><DeleteCategory DeleteItem={item} /></div>
+                                                <div className="col-1"><DeleteCategory DelCategoryID={item.catID} DelCategoryName={item.catName} /></div>
                                             </div>
                                         </td>
                                     </tr>
