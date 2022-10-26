@@ -12,6 +12,7 @@ Tech Stack:
 - Node JS
 - Express JS
 - JsonWebToken Authentication
+- React Bootstrap Toast for Alert
 
 
 ## Features
@@ -37,7 +38,7 @@ Tech Stack:
     - [x] Delete Product
 
 - [ ] Customers
-    - [ ] Search Customers
+    - [x] Search Customers
     - [x] Show Customers
     - [x] Add Customers
     - [ ] Edit Customers
