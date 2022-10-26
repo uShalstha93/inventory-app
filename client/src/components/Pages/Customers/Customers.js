@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showCustomerList } from './CustomerSlice'
 import loading from '../../../image/LoadingIMG.gif'
 import AddCustomer from './AddCustomer'
+import EditCustomer from './EditCustomer'
 
 const Customers = () => {
 
@@ -64,7 +65,11 @@ const Customers = () => {
                                         <td>{item.customerAddress}</td>
                                         <td>{item.customerContactNo}</td>
                                         <td>{item.customerEmail}</td>
-                                        <td>Edit/Delete</td>
+                                        <td>
+                                            <div className="row">
+                                                <div className="col-1 mx-1"><EditCustomer EditItem={item} /></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div>}
