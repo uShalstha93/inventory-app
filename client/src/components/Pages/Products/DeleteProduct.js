@@ -1,22 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Toast } from 'react-bootstrap'
 
 const DeleteProduct = (props) => {
 
-    const [currentDeleteProduct, setCurrentDeleteProduct] = useState({})
-
     const delProduct = () => {
-
-        setCurrentDeleteProduct(props.DelProduct)
 
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                productID: currentDeleteProduct.productID
+                productID: props.DelProductID
             })
         }
-        if (window.confirm(`Are You Sure ? You want to Delete Product - ${currentDeleteProduct.productName}`)) {
+        if (window.confirm(`Are You Sure ? You want to Delete Product - ${props.DelProductName}`)) {
             //fetch delete api
             fetch("http://localhost:2000/products", requestOptions)
             .then((res) => res.json())
@@ -25,7 +21,7 @@ const DeleteProduct = (props) => {
             })
         }
         else {
-            alert(`Failed to Delete Product - ${currentDeleteProduct.productName}!!`)
+            alert(`Failed to Delete Product - ${props.DelProductName}!!`)
         }
     }
 

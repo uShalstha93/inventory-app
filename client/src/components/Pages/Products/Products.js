@@ -76,7 +76,7 @@ const Products = () => {
                                         <td>
                                             <div className="row">
                                                 <div className="col-1 mx-1"><EditProducts EditProducts={item} /></div>
-                                                <div className="col-1"><DeleteProduct DelProduct={item} /></div>
+                                                <div className="col-1"><DeleteProduct DelProductID={item.productID} DelProductName={item.productName} /></div>
                                             </div>
                                         </td>
                                     </tr>
