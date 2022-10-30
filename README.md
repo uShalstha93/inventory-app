@@ -37,12 +37,12 @@ Tech Stack:
     - [x] Edit Product
     - [x] Delete Product
 
-- [ ] Customers
+- [x] Customers
     - [x] Search Customers
     - [x] Show Customers
     - [x] Add Customers
-    - [ ] Edit Customers
-    - [ ] Delete Customers
+    - [x] Edit Customers
+    - [x] Delete Customers
 
 
 ## Future Feature
