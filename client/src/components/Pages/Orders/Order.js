@@ -3,6 +3,7 @@ import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { showOrderList } from './OrderSlice'
 import loading from '../../../image/LoadingIMG.gif'
+import AddOrder from './AddOrder'
 
 const Order = () => {
 
@@ -21,7 +22,7 @@ const Order = () => {
 
         <div className="container-fluid">
             <Row>
-                Add Orders
+                <AddOrder />
             </Row>
             <Row>
                 <div>
