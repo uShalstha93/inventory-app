@@ -8,6 +8,7 @@ const CategoryRouter = require('../src/routes/CategoryRouter')
 const UsersRouter = require('./routes/UserRouter')
 const ProductRouter = require('./routes/ProductRouter')
 const CustomerRouter = require('./routes/CustomerRouter')
+const OrderRouter = require('./routes/OrderRouter')
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -16,6 +17,7 @@ app.use('/', UsersRouter)
 app.use('/category', CategoryRouter)
 app.use('/products', ProductRouter)
 app.use('/customers', CustomerRouter)
+app.use('/orders', OrderRouter)
 
 app.listen(process.env.port, (err) => {
     if (err) {
