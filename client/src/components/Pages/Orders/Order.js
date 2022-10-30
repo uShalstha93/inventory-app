@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { showOrderList } from './OrderSlice'
+import loading from '../../../image/LoadingIMG.gif'
 
 const Order = () => {
+
+    document.title = `Orders - Inventory`
+    
+    const dispatch = useDispatch()
+    const { orderList } = useSelector((state) => state.Order)
+
+    const [searchOrderName, setSearchOrderName] = useState("")
+
+    const searchOrder = orderList.filter((OItem) => {
+       return null
+    })
 
     return (
 
@@ -30,7 +44,22 @@ const Order = () => {
                                 <th>OPTIONS</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            {orderList.length > 0 ? orderList.map((item, idx) => {
+                                return (
+                                    <tr key={item.orderID}>
+                                        <td>{item.orderID}</td>
+                                        <td>{item.customerName}</td>
+                                        <td>{item.productName}</td>
+                                        <td>{item.contactNo}</td>
+                                        <td>{item.orderDate}</td>
+                                        <td>{item.totalprice}</td>
+                                        <td>{item.orderStatus}</td>
+                                        <td>Edit/Delete</td>
+                                    </tr>
+                                )
+                            }) : <div><img src={loading} className="d-flex" alt="loading" width="50px" /></div>}
+                        </tbody>
                     </Table>
                 </div>
             </Row>
