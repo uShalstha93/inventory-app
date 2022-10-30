@@ -8,6 +8,7 @@ import Login from './components/Form/Login';
 import './wrapper.css';
 import Homepage from './components/Pages/Dashboard/Homepage';
 import Customers from './components/Pages/Customers/Customers';
+import Order from './components/Pages/Orders/Order';
 // import Toast from '../src/components/Pages/Users/Toast'
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
           <Route path='category' element={<Category />} />
           <Route path='products' element={<Products />} />
           <Route path='customers' element={<Customers />} />
-          <Route path='orders' element={null} />
+          <Route path='orders' element={<Order />} />
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Registration />} />
