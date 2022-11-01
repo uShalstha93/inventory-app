@@ -67,7 +67,7 @@ const AddProducts = () => {
                     <p className="m-0" style={{ position: "relative", right: "5px" }}><i className="bi bi-plus" /> ADD PRODUCT</p>
                 </div>
             </div>
-            <Modal show={addProductShow} onHide={handleProductClose} style={{ fontFamily: "serif" }}>
+            <Modal show={addProductShow} onHide={handleProductClose} style={{ fontFamily: "serif" }} centered>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>ADD PRODUCT</Modal.Title>
                 </Modal.Header>
@@ -151,7 +151,7 @@ const AddProducts = () => {
                                 <Form.Group as={Row} className="mb-3" controlId="productPrice">
                                     <Form.Label column sm="3">PRICE :</Form.Label>
                                     <Col sm="4">
-                                        <Form.Control type="text" name="productPrice" placeholder="Enter Price" onChange={handleChange} value={values.productPrice} style={{ borderColor: touched.productPrice && errors.productPrice ? "red" : null }} />
+                                        <Form.Control type="text" name="productPrice" placeholder="Rs." onChange={handleChange} value={values.productPrice} style={{ borderColor: touched.productPrice && errors.productPrice ? "red" : null }} />
                                         {touched.productPrice && errors.productPrice ? (
                                             <Col className="error-message">{errors.productPrice}</Col>
                                         ) : null}

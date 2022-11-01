@@ -43,7 +43,7 @@ const EditCategory = (props) => {
             <div>
                 <i className="bi bi-pencil-square btn-sm" onClick={editHandleShow} />
             </div>
-            <Modal show={editShow} onHide={editHandleClose}>
+            <Modal show={editShow} onHide={editHandleClose} centered>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>EDIT CATEGORY</Modal.Title>
                 </Modal.Header>

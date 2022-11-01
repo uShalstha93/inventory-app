@@ -57,7 +57,7 @@ const AddCategory = () => {
                     <p className="m-0" style={{ position: "relative", right: "5px" }}><i className='bi bi-plus' /> ADD CATEGORY</p>
                 </div>
             </div>
-            <Modal show={addShow} onHide={handleCategoryClose} style={{ fontFamily: "serif" }}>
+            <Modal show={addShow} onHide={handleCategoryClose} style={{ fontFamily: "serif" }} centered>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>ADD CATEGORY</Modal.Title>
                 </Modal.Header>

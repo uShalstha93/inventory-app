@@ -51,7 +51,7 @@ const EditCustomer = (props) => {
             <div>
                 <i className="bi bi-pencil-square btn-sm" onClick={editHandleShow} />
             </div>
-            <Modal show={editCustomerShow} onHide={editHandleClose} style={{ fontFamily: "serif" }}>
+            <Modal show={editCustomerShow} onHide={editHandleClose} style={{ fontFamily: "serif" }} centered>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>EDIT CUSTOMER</Modal.Title>
                 </Modal.Header>

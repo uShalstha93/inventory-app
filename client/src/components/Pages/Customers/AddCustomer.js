@@ -52,7 +52,7 @@ const AddCustomer = () => {
                     <p className="m-0" style={{ position: "relative", right: "5px" }}><i className="bi bi-plus" /> ADD CUSTOMER</p>
                 </div>
             </div>
-            <Modal show={addCustomerShow} onHide={handleCustomerClose} style={{ fontFamily: "serif" }}>
+            <Modal show={addCustomerShow} onHide={handleCustomerClose} style={{ fontFamily: "serif" }} centered>
                 <Modal.Header style={{ backgroundColor: "#e6e6e6", backgroundImage: `url(${TitleImg})`, color: "white" }} closeButton>
                     <Modal.Title>ADD CUSTOMER</Modal.Title>
                 </Modal.Header>

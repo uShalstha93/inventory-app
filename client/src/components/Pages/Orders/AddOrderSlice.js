@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
     addOrderShow: false,
-    customerName: [],
-    productName: [],
+    customer: [],
+    product: [],
 }
 
 const AddOrderSlice = createSlice({
@@ -17,10 +17,10 @@ const AddOrderSlice = createSlice({
             state.addOrderShow = false
         },
         showCustomerName: (state, actions) => {
-            state.customerName = actions.payload
+            state.customer = actions.payload
         },
         showProductName: (state, actions) => {
-            state.productName = actions.payload
+            state.product = actions.payload
         },
     }
 })

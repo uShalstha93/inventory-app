@@ -7,6 +7,7 @@ import EditCategorySlice from "./components/Pages/Category/EditCategorySlice";
 import AddCustomerSlice from "./components/Pages/Customers/AddCustomerSlice";
 import CustomerSlice from "./components/Pages/Customers/CustomerSlice";
 import EditCustomerSlice from "./components/Pages/Customers/EditCustomerSlice";
+import AddOrderSlice from "./components/Pages/Orders/AddOrderSlice";
 import OrderSlice from "./components/Pages/Orders/OrderSlice";
 import AddProductSlice from "./components/Pages/Products/AddProductSlice";
 import EditProductSlice from "./components/Pages/Products/EditProductSlice";
@@ -23,6 +24,7 @@ const reducer = combineReducers({
     AddCustomer: AddCustomerSlice,
     EditCustomer: EditCustomerSlice,
     Order: OrderSlice,
+    AddOrder: AddOrderSlice,
 });
 
 const store = configureStore({

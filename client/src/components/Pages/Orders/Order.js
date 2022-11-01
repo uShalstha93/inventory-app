@@ -54,7 +54,7 @@ const Order = () => {
                                         <td>{item.productName}</td>
                                         <td>{item.contactNo}</td>
                                         <td>{item.orderDate}</td>
-                                        <td>{item.totalprice}</td>
+                                        <td>{item.orderPrice}</td>
                                         <td>{item.orderStatus}</td>
                                         <td>Edit/Delete</td>
                                     </tr>
