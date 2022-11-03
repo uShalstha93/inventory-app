@@ -22,4 +22,22 @@ router.get('/', (req, res) => {
     }
 })
 
+//order post method api
+router.post('/', async (req, res) => {
+    try {
+        order.create(req.body)
+        res.json({
+            message: `Order Added Successfully!!`,
+            orderDetail: req.body
+        })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to post Order!!",
+            errorDetail: err
+        })
+    }
+})
+
 module.exports = router
