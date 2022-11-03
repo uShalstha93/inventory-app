@@ -57,7 +57,7 @@ const Login = () => {
                                     // BrowserToken !== undefined ? navigate('/') : alert(result.message)
                                     if (result._token) {
                                         localStorage.setItem("token", result._token)
-                                        navigate('/')
+                                        navigate('/dashboard')
                                     }
                                     else {
                                         setShowAlert(true)
