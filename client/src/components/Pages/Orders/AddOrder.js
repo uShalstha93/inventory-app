@@ -65,6 +65,10 @@ const AddOrder = () => {
             .required("* Price is Required!!")
             .positive("* Must be positive number!!")
             .integer("* Must be Integer value!!"),
+        orderQty: Yup.number()
+            .required("* Quantity is Required!!")
+            .positive("* Must be positive number!!")
+            .integer("* Must be Integer value!!"),
         orderStatus: Yup.string()
             .required("* Status is Required!!")
     })
@@ -85,7 +89,7 @@ const AddOrder = () => {
                 </Modal.Header>
                 <Modal.Body style={{ background: "aliceblue" }}>
                     <Formik
-                        initialValues={{ orderID: "", customerID: "", customerName: "", productID: "", productName: "", contactNo: "", orderDate: "", orderPrice: "", orderStatus: "" }}
+                        initialValues={{ orderID: "", customerID: "", customerName: "", productID: "", productName: "", contactNo: "", orderDate: "", orderQty: "", orderPrice: "", orderStatus: "" }}
                         validationSchema={validateAddOrderSchema}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setSubmitting(true);
@@ -94,14 +98,19 @@ const AddOrder = () => {
                             //         method: "POST",
                             //         headers: { "Content-Type": "application/json" },
                             //         body: JSON.stringify({
-                            //             productID: values.productID,
-                            //             productName: values.productName,
-                            //             productCategory: values.productCategory,
-                            //             productQty: values.productQty,
-                            //             productPrice: values.productPrice
+                                        // orderID: values.orderID,
+                                        // customerID: values.customerID,
+                                        // customerName: values.customerName,
+                                        // productID: values.productID,
+                                        // productName: values.productName,
+                                        // contactNo: values.contactNo,
+                                        // orderDate: values.orderDate,
+                                        // orderQty: values.orderQty,
+                                        // orderPrice: values.orderPrice,
+                                        // orderStatus: values.orderStatus
                             //         })
                             //     }
-                            //     fetch("http://localhost:2000/products", requestOptions)
+                            //     fetch("http://localhost:2000/orders", requestOptions)
                             //         .then((res) => res.json())
                             //         .then(result => {
                             //             setAlertMsg(result.message)
@@ -125,7 +134,7 @@ const AddOrder = () => {
                                     </Col>
                                 </Form.Group>
                                 <Form.Label><b>CUSTOMER FIELD</b><hr className="mt-1" /></Form.Label>
-                                <Form.Group as={Row} className="mb-3" controlId="customerID">
+                                <Form.Group as={Row} className="mb-3" controlId="customers">
                                     <Form.Label column sm="2">CUST. ID :</Form.Label>
                                     <Col sm="3">
                                         <Form.Control type="text" name="customerID" placeholder="Cust. ID" onChange={handleChange} value={values.customerID} style={{ borderColor: touched.customerID && errors.customerID ? "red" : null }} disabled />
@@ -148,7 +157,7 @@ const AddOrder = () => {
                                         ) : null}
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="productQty">
+                                <Form.Group as={Row} className="mb-3" controlId="contactNo">
                                     <Form.Label column sm="2">CONTACT NO</Form.Label>
                                     <Col sm="4">
                                         <Form.Control type="text" name="contactNo" placeholder="Enter Contact No" onChange={handleChange} value={values.contactNo} style={{ borderColor: touched.contactNo && errors.contactNo ? "red" : null }} disabled />
@@ -158,7 +167,7 @@ const AddOrder = () => {
                                     </Col>
                                 </Form.Group>
                                 <Form.Label><b>PRODUCT FIELD</b><hr className="mt-1" /></Form.Label>
-                                <Form.Group as={Row} className="mb-3" controlId="productID">
+                                <Form.Group as={Row} className="mb-3" controlId="products">
                                     <Form.Label column sm="2">PROD. ID :</Form.Label>
                                     <Col sm="3">
                                         <Form.Control type="text" name="productID" placeholder="Prod. ID" onChange={handleChange} value={values.productID} style={{ borderColor: touched.productID && errors.productID ? "red" : null }} disabled />
@@ -181,7 +190,7 @@ const AddOrder = () => {
                                         ) : null}
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="orderDate">
+                                <Form.Group as={Row} className="mb-3" controlId="orders">
                                     <Form.Label column sm="2">ORDER DATE :</Form.Label>
                                     <Col sm="3">
                                         <Form.Control type="text" name="orderDate" placeholder="Enter Date" onChange={handleChange} value={values.orderDate} style={{ borderColor: touched.orderDate && errors.orderDate ? "red" : null }} />
@@ -189,6 +198,15 @@ const AddOrder = () => {
                                             <Col className="error-message">{errors.orderDate}</Col>
                                         ) : null}
                                     </Col>
+                                    <Form.Label column sm="2">ORDER QTY:</Form.Label>
+                                    <Col sm="4">
+                                        <Form.Control type="text" name="orderQty" placeholder="Enter Quantity" onChange={handleChange} value={values.orderQty} style={{ borderColor: touched.orderQty && errors.orderQty ? "red" : null }} />
+                                        {touched.orderQty && errors.orderQty ? (
+                                            <Col className="error-message">{errors.orderQty}</Col>
+                                        ) : null}
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="orderPrice">
                                     <Form.Label column sm="2">TOTAL PRICE:</Form.Label>
                                     <Col sm="4">
                                         <Form.Control type="text" name="orderPrice" placeholder="Rs." onChange={handleChange} value={values.orderPrice} style={{ borderColor: touched.orderPrice && errors.orderPrice ? "red" : null }} />
@@ -206,6 +224,14 @@ const AddOrder = () => {
                     </Formik>
                 </Modal.Body>
             </Modal>
+            <ToastContainer position="top-end" className="p-3">
+                <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ position: "relative", left: "15rem", fontSize: "15px" }} autohide>
+                    <Toast.Header style={{ background: "#6dcf6d", color: "black" }}>
+                        <strong className="me-auto">ADD ORDER</strong>
+                    </Toast.Header>
+                    <Toast.Body>{alertMsg}</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
 
     )
