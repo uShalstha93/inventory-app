@@ -208,10 +208,21 @@ const AddOrder = () => {
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="orderPrice">
                                     <Form.Label column sm="2">TOTAL PRICE:</Form.Label>
-                                    <Col sm="4">
+                                    <Col sm="3">
                                         <Form.Control type="text" name="orderPrice" placeholder="Rs." onChange={handleChange} value={values.orderPrice} style={{ borderColor: touched.orderPrice && errors.orderPrice ? "red" : null }} />
                                         {touched.orderPrice && errors.orderPrice ? (
                                             <Col className="error-message">{errors.orderPrice}</Col>
+                                        ) : null}
+                                    </Col>
+                                    <Form.Label column sm="2">STATUS :</Form.Label>
+                                    <Col sm="4">
+                                        <Form.Select id="orderStatus" type="text" name="orderStatus" onChange={handleChange} value={values.orderStatus} style={{ borderColor: touched.orderStatus && errors.orderStatus ? "red" : null }}>
+                                            <option>Select Status</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Delivered">Delivered</option>
+                                        </Form.Select>
+                                        {touched.orderStatus && errors.orderStatus ? (
+                                            <Col className="error-message">{errors.orderStatus}</Col>
                                         ) : null}
                                     </Col>
                                 </Form.Group>

@@ -18,6 +18,18 @@ const Order = () => {
        return null
     })
 
+    const fetchOrder = () => {
+        fetch("http://localhost:2000/orders")
+        .then((res) => res.json())
+        .then(data => {
+            dispatch(showOrderList(data.detail))
+        })
+    }
+
+    useEffect(() => {
+        fetchOrder()
+    }, [])
+
     return (
 
         <div className="container-fluid">
@@ -46,6 +58,7 @@ const Order = () => {
                             </tr>
                         </thead>
                         <tbody>
+                            {/* {JSON.stringify(orderList)} */}
                             {orderList.length > 0 ? orderList.map((item, idx) => {
                                 return (
                                     <tr key={item.orderID}>
