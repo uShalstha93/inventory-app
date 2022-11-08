@@ -93,33 +93,33 @@ const AddOrder = () => {
                         validationSchema={validateAddOrderSchema}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setSubmitting(true);
-                            // setTimeout(() => {
-                            //     const requestOptions = {
-                            //         method: "POST",
-                            //         headers: { "Content-Type": "application/json" },
-                            //         body: JSON.stringify({
-                                        // orderID: values.orderID,
-                                        // customerID: values.customerID,
-                                        // customerName: values.customerName,
-                                        // productID: values.productID,
-                                        // productName: values.productName,
-                                        // contactNo: values.contactNo,
-                                        // orderDate: values.orderDate,
-                                        // orderQty: values.orderQty,
-                                        // orderPrice: values.orderPrice,
-                                        // orderStatus: values.orderStatus
-                            //         })
-                            //     }
-                            //     fetch("http://localhost:2000/orders", requestOptions)
-                            //         .then((res) => res.json())
-                            //         .then(result => {
-                            //             setAlertMsg(result.message)
-                            //         })
-                            //         .then(setShowAlert(true))
-                            //         .then(resetForm())
-                            //         .then(setSubmitting(false))
-                            //         .then(handleProductClose())
-                            // }, 500);
+                            setTimeout(() => {
+                                const requestOptions = {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        orderID: values.orderID,
+                                        customerID: values.customerID,
+                                        customerName: values.customerName,
+                                        productID: values.productID,
+                                        productName: values.productName,
+                                        contactNo: values.contactNo,
+                                        orderDate: values.orderDate,
+                                        orderQty: values.orderQty,
+                                        orderPrice: values.orderPrice,
+                                        orderStatus: values.orderStatus
+                                    })
+                                }
+                                fetch("http://localhost:2000/orders", requestOptions)
+                                    .then((res) => res.json())
+                                    .then(result => {
+                                        setAlertMsg(result.message)
+                                    })
+                                    .then(setShowAlert(true))
+                                    .then(resetForm())
+                                    .then(setSubmitting(false))
+                                    .then(handleOrderClose())
+                            }, 500);
                         }}
                     >
                         {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (

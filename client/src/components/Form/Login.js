@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { changeFullName, changeToken } from './LoginSlice'
 import { Form, Col, Row, Button, ToastContainer, Toast } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -9,6 +11,8 @@ import TitleImg from '../../image/MainBackground.png'
 const Login = () => {
 
     document.title = `Sign In - Inventory`
+
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
 
@@ -57,6 +61,9 @@ const Login = () => {
                                     // BrowserToken !== undefined ? navigate('/') : alert(result.message)
                                     if (result._token) {
                                         localStorage.setItem("token", result._token)
+                                        // console.log(result.fullName,result._token)
+                                        dispatch(changeFullName(result.fullName))
+                                        dispatch(changeToken(result._token))
                                         navigate('/dashboard')
                                     }
                                     else {

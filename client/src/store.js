@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import logger from 'redux-logger';
+import LoginSlice from "./components/Form/LoginSlice";
 import AddCategorySlice from "./components/Pages/Category/AddCategorySlice";
 import CategorySlice from "./components/Pages/Category/CategorySlice";
 import EditCategorySlice from "./components/Pages/Category/EditCategorySlice";
@@ -25,6 +26,7 @@ const reducer = combineReducers({
     EditCustomer: EditCustomerSlice,
     Order: OrderSlice,
     AddOrder: AddOrderSlice,
+    Login: LoginSlice,
 });
 
 const store = configureStore({

@@ -82,6 +82,7 @@ router.post('/login', async (req, res) => {
                                 res.json({
                                     message: "Password Match!",
                                     _token: accessCode,
+                                    fullName: result.fullName
                                 })
                             })
                     }

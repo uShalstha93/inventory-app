@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Logo from '../../image/IMSLogoP.png';
 import TitleImg from '../../image/MainBackground.png'
 import { Nav, Container, Navbar, NavDropdown, Button } from 'react-bootstrap';
@@ -28,6 +29,9 @@ const NavBar = () => {
 
     const navigate = useNavigate()
 
+    const { fullName } = useSelector((state) => state.Login)
+    console.log(fullName)
+
     const logout = () => {
         localStorage.removeItem("token")
         navigate('/login')
@@ -49,7 +53,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <NavDropdown title="UserName" id="collasible-nav-dropdown">
+                        <NavDropdown title={fullName} id="collasible-nav-dropdown">
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
                             <NavDropdown.Item as={Button} variant="light" onClick={logout}>Log Out</NavDropdown.Item>
