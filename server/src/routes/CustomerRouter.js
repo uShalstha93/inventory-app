@@ -16,7 +16,27 @@ router.get('/', async (req, res) => {
     catch (err) {
         console.log(err)
         res.send({
-            errrorMsg: "Unable to Fetch Customers!!",
+            errorMsg: "Unable to Fetch Customers!!",
+            errorDetail: err
+        })
+    }
+})
+
+router.get('/:id', (req, res) => {
+    try {
+        // const customerName = req.params.name
+        customer.find({ customerID: req.params.id })
+            .then(result => {
+                res.json({
+                    message: "Customer Found!!",
+                    detail: result
+                })
+            })
+    }
+    catch (err) {
+        console.log(err)
+        res.send({
+            errorMsg: "Unable to Fetch selected Customers!!",
             errorDetail: err
         })
     }
@@ -70,12 +90,12 @@ router.delete('/', async (req, res) => {
     try {
         // console.log(req.body.customerID)
         customer.deleteOne({ customerID: req.body.customerID })
-        .then(result => {
-            res.json({
-                message: `Customer Deleted Successfully!!`,
-                customerDetail: req.body
+            .then(result => {
+                res.json({
+                    message: `Customer Deleted Successfully!!`,
+                    customerDetail: req.body
+                })
             })
-        })
     }
     catch (err) {
         console.log(err)
