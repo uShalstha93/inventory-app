@@ -22,10 +22,10 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async(req, res) => {
     try {
         // const customerName = req.params.name
-        customer.find({ customerID: req.params.id })
+        customer.findOne({ customerID: req.params.id })
             .then(result => {
                 res.json({
                     message: "Customer Found!!",
