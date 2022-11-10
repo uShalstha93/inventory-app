@@ -49,7 +49,7 @@ const AddCustomer = () => {
         <>
             <div className="shadow mb-4 pb-2 bg-white rounded btn" style={{ width: "200px" }} onClick={handleCustomerShow}>
                 <div className="align-center">
-                    <p className="m-0" style={{ position: "relative", right: "5px" }}><i className="bi bi-plus" /> ADD CUSTOMER</p>
+                    <p className="m-0" style={{ position: "relative", right: "5px" }}><i className="bi bi-person-plus-fill" /> ADD CUSTOMER</p>
                 </div>
             </div>
             <Modal show={addCustomerShow} onHide={handleCustomerClose} style={{ fontFamily: "serif" }} centered>

@@ -61,6 +61,7 @@ const Login = () => {
                                     // BrowserToken !== undefined ? navigate('/') : alert(result.message)
                                     if (result._token) {
                                         localStorage.setItem("token", result._token)
+                                        localStorage.setItem("fullName", result.fullName)
                                         // console.log(result.fullName,result._token)
                                         dispatch(changeFullName(result.fullName))
                                         dispatch(changeToken(result._token))

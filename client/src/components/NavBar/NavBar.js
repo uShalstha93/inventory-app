@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Logo from '../../image/IMSLogoP.png';
 import TitleImg from '../../image/MainBackground.png'
 import { Nav, Container, Navbar, NavDropdown, Button } from 'react-bootstrap';
@@ -29,11 +28,12 @@ const NavBar = () => {
 
     const navigate = useNavigate()
 
-    const { fullName } = useSelector((state) => state.Login)
-    console.log(fullName)
+    const displayName = localStorage.getItem("fullName")
+    console.log(displayName)
 
     const logout = () => {
         localStorage.removeItem("token")
+        localStorage.removeItem("fullName")
         navigate('/login')
     }
 
@@ -44,7 +44,7 @@ const NavBar = () => {
         //     <div style={textStyle}>Inventory Management System</div>
         //     <div style={userStyle}>UserName</div>
         // </div>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})` }}>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})`, color: "aliceblue" }}>
             <Container>
                 <Navbar.Brand as={Link} to='/dashboard'>
                     <img src={Logo} className="d-inline-block" alt="brand" width="70px" />
@@ -53,7 +53,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <NavDropdown title={fullName} id="collasible-nav-dropdown">
+                        <NavDropdown title={displayName} id="collasible-nav-dropdown">
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
                             <NavDropdown.Item as={Button} variant="light" onClick={logout}>Log Out</NavDropdown.Item>
@@ -62,7 +62,6 @@ const NavBar = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-
     );
 }
 

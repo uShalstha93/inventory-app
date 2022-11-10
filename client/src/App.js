@@ -9,6 +9,7 @@ import './wrapper.css';
 import Homepage from './components/Pages/Dashboard/Homepage';
 import Customers from './components/Pages/Customers/Customers';
 import Order from './components/Pages/Orders/Order';
+import Users from './components/Pages/Users/User';
 // import Toast from '../src/components/Pages/Users/Toast'
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='products' element={<Products />} />
           <Route path='customers' element={<Customers />} />
           <Route path='orders' element={<Order />} />
+          <Route path='users' element={<Users />} />
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Registration />} />

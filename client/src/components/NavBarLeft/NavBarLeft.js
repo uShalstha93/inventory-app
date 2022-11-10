@@ -22,6 +22,9 @@ const NavBarLeft = () => {
             <Link to="/orders">
                 <p><i className="bi bi-receipt mr-2"></i> ORDERS</p>
             </Link>
+            <Link to="/users">
+                <p><i className='bi bi-people-fill mr-2'></i> USERS</p>
+            </Link>
         </div>
 
     );
