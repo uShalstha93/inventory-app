@@ -29,7 +29,7 @@ const NavBar = () => {
     const navigate = useNavigate()
 
     const displayName = localStorage.getItem("fullName")
-    console.log(displayName)
+    // console.log(displayName)
 
     const logout = () => {
         localStorage.removeItem("token")
@@ -44,7 +44,7 @@ const NavBar = () => {
         //     <div style={textStyle}>Inventory Management System</div>
         //     <div style={userStyle}>UserName</div>
         // </div>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})`, color: "aliceblue" }}>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})` }}>
             <Container>
                 <Navbar.Brand as={Link} to='/dashboard'>
                     <img src={Logo} className="d-inline-block" alt="brand" width="70px" />
