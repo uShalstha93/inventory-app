@@ -43,6 +43,10 @@ Tech Stack:
     - [x] Add Customers
     - [x] Edit Customers
     - [x] Delete Customers
+    
+- [x] Users
+    - [x] Search Users
+    - [x] Show Users
 
 
 ## Future Feature
