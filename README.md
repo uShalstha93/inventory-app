@@ -3,16 +3,22 @@
 
 Tech Stack:
 (MERN)
-- React JS
+- React JS in Frontend
 - React Router
 - Redux
-- React Bootstrap
+- Redux Logger
+- React Bootstrap such as Model, Form, etc
+- React Bootstrap Icons
+- React Bootstrap Toast for Alert
 - Formik & Yup for Form Validation in React
 - MongoDB
-- Node JS
-- Express JS
+- Mongoose for Model and Connection
+- Node JS in Backend
+- Express JS in Backend
+- Express Router for backend routes
+- Cross-origin resource sharing (CORS)
+- bcrypt for password encryption
 - JsonWebToken Authentication
-- React Bootstrap Toast for Alert
 
 
 ## Features
