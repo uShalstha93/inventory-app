@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Form, Col, Row, Button, Toast, ToastContainer, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { addOrderShowWindow, addOrderCloseWindow, showCustomerName, showProductName } from './AddOrderSlice'
+import {
+    addOrderShowWindow,
+    addOrderCloseWindow,
+    showCustomerName,
+    showProductName,
+    showCurrentSelectedProductID,
+    showCurrentSelectedProductName,
+    showCurrentSelectedCustomerID,
+    showCurrentSelectedCustomerName,
+    showCurrentSelectedCustomerContact
+} from './AddOrderSlice'
 import '../../../wrapper.css'
 import TitleImg from '../../../image/MainBackground.png'
 import { Formik } from 'formik'
@@ -10,10 +20,39 @@ import * as Yup from 'yup'
 const AddOrder = () => {
 
     const dispatch = useDispatch()
-    const { addOrderShow, product, customer } = useSelector((state) => state.AddOrder)
+    const {
+        addOrderShow,
+        product,
+        customer,
+        currentSelectedProductID,
+        currentSelectedProductName,
+        currentSelectedCustomerID,
+        currentSelectedCustomerName,
+        currentSelectedCustomerContact
+    } = useSelector((state) => state.AddOrder)
 
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
+
+    const data = product.filter((pItem) => {
+        if (currentSelectedProductName === pItem.productName) {
+            return pItem
+        }
+    })
+    const redata = data[0]?.productID
+    dispatch(showCurrentSelectedProductID(redata))
+    // console.log(currentSelectedProductID,"afsafasf")
+
+    const data2 = customer.filter((cItem) => {
+        if (currentSelectedCustomerName === cItem.customerName) {
+            return cItem
+        }
+    })
+    const redata2 = data2[0]?.customerID
+    const redata3 = data2[0]?.customerContactNo
+    dispatch(showCurrentSelectedCustomerID(redata2))
+    dispatch(showCurrentSelectedCustomerContact(redata3))
+    // console.log(redata3, currentSelectedCustomerName)
 
     const handleOrderShow = () => {
         dispatch(addOrderShowWindow())
@@ -89,66 +128,95 @@ const AddOrder = () => {
                 </Modal.Header>
                 <Modal.Body style={{ background: "aliceblue" }}>
                     <Formik
-                        initialValues={{ orderID: "", customerID: "", customerName: "", productID: "", productName: "", contactNo: "", orderDate: "", orderQty: "", orderPrice: "", orderStatus: "" }}
-                        validationSchema={validateAddOrderSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
-                            setSubmitting(true);
-                            setTimeout(() => {
-                                const requestOptions = {
-                                    method: "POST",
-                                    headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify({
-                                        orderID: values.orderID,
-                                        customerID: values.customerID,
-                                        customerName: values.customerName,
-                                        productID: values.productID,
-                                        productName: values.productName,
-                                        contactNo: values.contactNo,
-                                        orderDate: values.orderDate,
-                                        orderQty: values.orderQty,
-                                        orderPrice: values.orderPrice,
-                                        orderStatus: values.orderStatus
-                                    })
-                                }
-                                fetch("http://localhost:2000/orders", requestOptions)
-                                    .then((res) => res.json())
-                                    .then(result => {
-                                        setAlertMsg(result.message)
-                                    })
-                                    .then(setShowAlert(true))
-                                    .then(resetForm())
-                                    .then(setSubmitting(false))
-                                    .then(handleOrderClose())
-                            }, 500);
+                        enableReinitialize
+                        initialValues={{
+                            orderID: "",
+                            customerID: currentSelectedCustomerID,
+                            customerName: currentSelectedCustomerName,
+                            productID: currentSelectedProductID,
+                            productName: currentSelectedProductName,
+                            contactNo: currentSelectedCustomerContact,
+                            orderDate: "",
+                            orderQty: "",
+                            orderPrice: "",
+                            orderStatus: ""
                         }}
+                        validationSchema={validateAddOrderSchema}
+                        onSubmit={
+                            (values, { setSubmitting, resetForm }) => {
+                                console.log(values)
+                                // setSubmitting(true);
+                                // setTimeout(() => {
+                                //     const requestOptions = {
+                                //         method: "POST",
+                                //         headers: { "Content-Type": "application/json" },
+                                //         body: JSON.stringify({
+                                //             orderID: values.orderID,
+                                //             customerID: values.customerID,
+                                //             customerName: values.customerName,
+                                //             productID: values.productID,
+                                //             productName: values.productName,
+                                //             contactNo: values.contactNo,
+                                //             orderDate: values.orderDate,
+                                //             orderQty: values.orderQty,
+                                //             orderPrice: values.orderPrice,
+                                //             orderStatus: values.orderStatus
+                                //         })
+                                //     }
+                                //     fetch("http://localhost:2000/orders", requestOptions)
+                                //         .then((res) => res.json())
+                                //         .then(result => {
+                                //             setAlertMsg(result.message)
+                                //         })
+                                //         .then(setShowAlert(true))
+                                //         .then(resetForm())
+                                //         .then(setSubmitting(false))
+                                //         .then(handleOrderClose())
+                                // }, 500);
+                            }
+                        }
                     >
-                        {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+                        {({ values, errors, touched, handleChange, handleSubmit, setFieldValue, isSubmitting }) => (
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group as={Row} className="mb-3" controlId="orderID">
-                                    <Form.Label column sm="2">ORDER ID :</Form.Label>
+                                    <Form.Label for="orderID" column sm="2">ORDER ID :</Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="orderID" placeholder="Enter Order ID" onChange={handleChange} value={values.orderID} style={{ borderColor: touched.orderID && errors.orderID ? "red" : null }} />
+                                        <Form.Control type="text" name="orderID"
+                                            placeholder="Enter Order ID"
+                                            onChange={(e) => setFieldValue("orderID", e.target.value)}
+                                            value={values.orderID}
+                                            style={{ borderColor: touched.orderID && errors.orderID ? "red" : null }} />
                                         {touched.orderID && errors.orderID ? (
                                             <Col className="error-message">{errors.orderID}</Col>
                                         ) : null}
                                     </Col>
                                 </Form.Group>
                                 <Form.Label><b>CUSTOMER FIELD</b><hr className="mt-1" /></Form.Label>
-                                <Form.Group as={Row} className="mb-3" controlId="customers">
-                                    <Form.Label column sm="2">CUST. ID :</Form.Label>
+                                <Form.Group as={Row} className="mb-3" controlId="customerID">
+                                    <Form.Label for="customerID" column sm="2">CUST. ID :</Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="customerID" placeholder="Cust. ID" onChange={handleChange} value={values.customerID} style={{ borderColor: touched.customerID && errors.customerID ? "red" : null }} disabled />
+                                        <Form.Control type="text" name="customerID"
+                                            placeholder="Cust. ID"
+                                            onChange={handleChange}
+                                            defaultValue={values.customerID}
+                                            style={{ borderColor: touched.customerID && errors.customerID ? "red" : null }} disabled />
                                         {touched.customerID && errors.customerID ? (
                                             <Col className="error-message">{errors.customerID}</Col>
                                         ) : null}
                                     </Col>
-                                    <Form.Label column sm="2">CUST. NAME :</Form.Label>
+                                    <Form.Label for="customerName" column sm="2">CUST. NAME :</Form.Label>
                                     <Col sm="4">
-                                        <Form.Select id="selectCustomer" type="text" name="customerName" onChange={handleChange} value={values.customerName} style={{ borderColor: touched.customerName && errors.customerName ? "red" : null }}>
-                                            <option>Select Customer</option>
+                                        <Form.Select id="customerName" type="text" name="customerName"
+                                            onChange={(e) => {
+                                                setFieldValue("customerName", e.target.value)
+                                                dispatch(showCurrentSelectedCustomerName(e.target.value))
+                                            }}
+                                            defaultValue={values.customerName}
+                                            style={{ borderColor: touched.customerName && errors.customerName ? "red" : null }}>
+                                            <option value={null}>Select Customer</option>
                                             {customer.map((custName, id) => {
                                                 return (
-                                                    <option>{custName.customerName}</option>
+                                                    <option value={custName.customerName}>{custName.customerName}</option>
                                                 )
                                             })}
                                         </Form.Select>
@@ -158,30 +226,44 @@ const AddOrder = () => {
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="contactNo">
-                                    <Form.Label column sm="2">CONTACT NO</Form.Label>
+                                    <Form.Label for="contactNo" column sm="2">CONTACT NO</Form.Label>
                                     <Col sm="4">
-                                        <Form.Control type="text" name="contactNo" placeholder="Enter Contact No" onChange={handleChange} value={values.contactNo} style={{ borderColor: touched.contactNo && errors.contactNo ? "red" : null }} disabled />
+                                        <Form.Control type="text" name="contactNo"
+                                            placeholder="Enter Contact No"
+                                            onChange={handleChange}
+                                            defaultValue={values.contactNo}
+                                            style={{ borderColor: touched.contactNo && errors.contactNo ? "red" : null }} disabled />
                                         {touched.contactNo && errors.contactNo ? (
                                             <Col className="error-message">{errors.contactNo}</Col>
                                         ) : null}
                                     </Col>
                                 </Form.Group>
                                 <Form.Label><b>PRODUCT FIELD</b><hr className="mt-1" /></Form.Label>
-                                <Form.Group as={Row} className="mb-3" controlId="products">
-                                    <Form.Label column sm="2">PROD. ID :</Form.Label>
+                                <Form.Group as={Row} className="mb-3" controlId="productID">
+                                    <Form.Label for="productID" column sm="2">PROD. ID :</Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="productID" placeholder="Prod. ID" onChange={handleChange} value={values.productID} style={{ borderColor: touched.productID && errors.productID ? "red" : null }} disabled />
+                                        <Form.Control type="text" name="productID"
+                                            placeholder="Prod. ID"
+                                            onChange={handleChange}
+                                            defaultValue={values.productID}
+                                            style={{ borderColor: touched.productID && errors.productID ? "red" : null }} disabled />
                                         {touched.productID && errors.productID ? (
                                             <Col className="error-message">{errors.productID}</Col>
                                         ) : null}
                                     </Col>
-                                    <Form.Label column sm="2">PROD. NAME :</Form.Label>
+                                    <Form.Label for="productName" column sm="2">PROD. NAME :</Form.Label>
                                     <Col sm="4">
-                                        <Form.Select id="selectProduct" type="text" name="productName" onChange={handleChange} value={values.productName} style={{ borderColor: touched.productName && errors.productName ? "red" : null }}>
+                                        <Form.Select id="productName" type="text" name="productName"
+                                            onChange={(e) => {
+                                                setFieldValue("productName", e.target.value)
+                                                dispatch(showCurrentSelectedProductName(e.target.value))
+                                            }}
+                                            defaultValue={values.productName}
+                                            style={{ borderColor: touched.productName && errors.productName ? "red" : null }}>
                                             <option>Select Product</option>
                                             {product.map((pName, id) => {
                                                 return (
-                                                    <option>{pName.productName}</option>
+                                                    <option value={pName.productName}>{pName.productName}</option>
                                                 )
                                             })}
                                         </Form.Select>
@@ -190,34 +272,49 @@ const AddOrder = () => {
                                         ) : null}
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="orders">
-                                    <Form.Label column sm="2">ORDER DATE :</Form.Label>
+                                <Form.Group as={Row} className="mb-3" controlId="orderDate">
+                                    <Form.Label for="orderDate" column sm="2">ORDER DATE :</Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="orderDate" placeholder="Enter Date" onChange={handleChange} value={values.orderDate} style={{ borderColor: touched.orderDate && errors.orderDate ? "red" : null }} />
+                                        <Form.Control type="text" name="orderDate"
+                                            placeholder="Enter Date"
+                                            onChange={(e) => setFieldValue("orderDate", e.target.value)}
+                                            value={values.orderDate}
+                                            style={{ borderColor: touched.orderDate && errors.orderDate ? "red" : null }} />
                                         {touched.orderDate && errors.orderDate ? (
                                             <Col className="error-message">{errors.orderDate}</Col>
                                         ) : null}
                                     </Col>
-                                    <Form.Label column sm="2">ORDER QTY:</Form.Label>
+                                    <Form.Label for="orderQty" column sm="2">ORDER QTY:</Form.Label>
                                     <Col sm="4">
-                                        <Form.Control type="text" name="orderQty" placeholder="Enter Quantity" onChange={handleChange} value={values.orderQty} style={{ borderColor: touched.orderQty && errors.orderQty ? "red" : null }} />
+                                        <Form.Control type="text" name="orderQty"
+                                            placeholder="Enter Quantity"
+                                            onChange={(e) => setFieldValue("orderQty", e.target.value)}
+                                            value={values.orderQty}
+                                            style={{ borderColor: touched.orderQty && errors.orderQty ? "red" : null }} />
                                         {touched.orderQty && errors.orderQty ? (
                                             <Col className="error-message">{errors.orderQty}</Col>
                                         ) : null}
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="orderPrice">
-                                    <Form.Label column sm="2">TOTAL PRICE:</Form.Label>
+                                    <Form.Label for="orderPrice" column sm="2">TOTAL PRICE:</Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="orderPrice" placeholder="Rs." onChange={handleChange} value={values.orderPrice} style={{ borderColor: touched.orderPrice && errors.orderPrice ? "red" : null }} />
+                                        <Form.Control type="text" name="orderPrice"
+                                            placeholder="Rs."
+                                            onChange={(e) => setFieldValue("orderPrice", e.target.value)}
+                                            value={values.orderPrice}
+                                            style={{ borderColor: touched.orderPrice && errors.orderPrice ? "red" : null }} />
                                         {touched.orderPrice && errors.orderPrice ? (
                                             <Col className="error-message">{errors.orderPrice}</Col>
                                         ) : null}
                                     </Col>
-                                    <Form.Label column sm="2">STATUS :</Form.Label>
+                                    <Form.Label for="orderStatus" column sm="2">STATUS :</Form.Label>
                                     <Col sm="4">
-                                        <Form.Select id="orderStatus" type="text" name="orderStatus" onChange={handleChange} value={values.orderStatus} style={{ borderColor: touched.orderStatus && errors.orderStatus ? "red" : null }}>
-                                            <option>Select Status</option>
+                                        <Form.Select id="orderStatus" type="text" name="orderStatus"
+                                            onChange={(e) => setFieldValue("orderStatus", e.target.value)}
+                                            value={values.orderStatus}
+                                            style={{ borderColor: touched.orderStatus && errors.orderStatus ? "red" : null }}>
+                                            <option value={null}>Select Status</option>
                                             <option value="Pending">Pending</option>
                                             <option value="Delivered">Delivered</option>
                                         </Form.Select>
@@ -227,7 +324,7 @@ const AddOrder = () => {
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting}>ADD</Button>
+                                    <Button variant="outline-primary" size="sm" type="submit" >ADD</Button>
                                     <Button variant="outline-danger" size="sm" onClick={handleOrderClose} >CLOSE</Button>
                                 </Modal.Footer>
                             </Form>
