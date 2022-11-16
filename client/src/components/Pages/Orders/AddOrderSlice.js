@@ -6,9 +6,11 @@ export const initialState = {
     product: [],
     currentSelectedProductID: "",
     currentSelectedProductName: "",
+    currentSelectedProductPrice: "",
     currentSelectedCustomerID: "",
     currentSelectedCustomerName: "",
-    currentSelectedCustomerContact: ""
+    currentSelectedCustomerContact: "",
+    totalPrice: ""
 }
 
 const AddOrderSlice = createSlice({
@@ -33,6 +35,9 @@ const AddOrderSlice = createSlice({
         showCurrentSelectedProductName: (state, actions) => {
             state.currentSelectedProductName = actions.payload
         },
+        showCurrentSelectedProductPrice: (state, actions) => {
+            state.currentSelectedProductPrice = actions.payload
+        },
         showCurrentSelectedCustomerID: (state, actions) => {
             state.currentSelectedCustomerID = actions.payload
         },
@@ -41,6 +46,9 @@ const AddOrderSlice = createSlice({
         },
         showCurrentSelectedCustomerContact: (state, actions) => {
             state.currentSelectedCustomerContact = actions.payload
+        },
+        changeTotalPrice: (state, actions) => {
+            state.totalPrice = actions.payload
         },
     }
 })
@@ -52,9 +60,11 @@ export const {
     showProductName,
     showCurrentSelectedProductID,
     showCurrentSelectedProductName,
+    showCurrentSelectedProductPrice,
     showCurrentSelectedCustomerID,
     showCurrentSelectedCustomerName,
-    showCurrentSelectedCustomerContact
+    showCurrentSelectedCustomerContact,
+    changeTotalPrice
 } = AddOrderSlice.actions;
 
 export default AddOrderSlice.reducer;

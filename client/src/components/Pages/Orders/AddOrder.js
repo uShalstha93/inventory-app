@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Form, Col, Row, Button, Toast, ToastContainer, Container } from 'react-bootstrap'
+import { Modal, Form, Col, Row, Button, Toast, ToastContainer } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     addOrderShowWindow,
@@ -10,7 +10,9 @@ import {
     showCurrentSelectedProductName,
     showCurrentSelectedCustomerID,
     showCurrentSelectedCustomerName,
-    showCurrentSelectedCustomerContact
+    showCurrentSelectedCustomerContact,
+    showCurrentSelectedProductPrice,
+    changeTotalPrice
 } from './AddOrderSlice'
 import '../../../wrapper.css'
 import TitleImg from '../../../image/MainBackground.png'
@@ -26,13 +28,16 @@ const AddOrder = () => {
         customer,
         currentSelectedProductID,
         currentSelectedProductName,
+        currentSelectedProductPrice,
         currentSelectedCustomerID,
         currentSelectedCustomerName,
-        currentSelectedCustomerContact
+        currentSelectedCustomerContact,
+        totalPrice
     } = useSelector((state) => state.AddOrder)
 
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
+    // const [quantity, setQuantity] = useState("")
 
     const data = product.filter((pItem) => {
         if (currentSelectedProductName === pItem.productName) {
@@ -40,8 +45,11 @@ const AddOrder = () => {
         }
     })
     const redata = data[0]?.productID
+    const redata4 = data[0]?.productPrice
+    
     dispatch(showCurrentSelectedProductID(redata))
-    // console.log(currentSelectedProductID,"afsafasf")
+    dispatch(showCurrentSelectedProductPrice(redata4))
+    // console.log(quantity, "afsafasf")
 
     const data2 = customer.filter((cItem) => {
         if (currentSelectedCustomerName === cItem.customerName) {
@@ -53,6 +61,7 @@ const AddOrder = () => {
     dispatch(showCurrentSelectedCustomerID(redata2))
     dispatch(showCurrentSelectedCustomerContact(redata3))
     // console.log(redata3, currentSelectedCustomerName)
+    // console.log(totalPrice)
 
     const handleOrderShow = () => {
         dispatch(addOrderShowWindow())
@@ -138,41 +147,41 @@ const AddOrder = () => {
                             contactNo: currentSelectedCustomerContact,
                             orderDate: "",
                             orderQty: "",
-                            orderPrice: "",
+                            orderPrice: totalPrice,
                             orderStatus: ""
                         }}
                         validationSchema={validateAddOrderSchema}
                         onSubmit={
                             (values, { setSubmitting, resetForm }) => {
-                                console.log(values)
-                                // setSubmitting(true);
-                                // setTimeout(() => {
-                                //     const requestOptions = {
-                                //         method: "POST",
-                                //         headers: { "Content-Type": "application/json" },
-                                //         body: JSON.stringify({
-                                //             orderID: values.orderID,
-                                //             customerID: values.customerID,
-                                //             customerName: values.customerName,
-                                //             productID: values.productID,
-                                //             productName: values.productName,
-                                //             contactNo: values.contactNo,
-                                //             orderDate: values.orderDate,
-                                //             orderQty: values.orderQty,
-                                //             orderPrice: values.orderPrice,
-                                //             orderStatus: values.orderStatus
-                                //         })
-                                //     }
-                                //     fetch("http://localhost:2000/orders", requestOptions)
-                                //         .then((res) => res.json())
-                                //         .then(result => {
-                                //             setAlertMsg(result.message)
-                                //         })
-                                //         .then(setShowAlert(true))
-                                //         .then(resetForm())
-                                //         .then(setSubmitting(false))
-                                //         .then(handleOrderClose())
-                                // }, 500);
+                                // console.log(values)
+                                setSubmitting(true);
+                                setTimeout(() => {
+                                    const requestOptions = {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({
+                                            orderID: values.orderID,
+                                            customerID: values.customerID,
+                                            customerName: values.customerName,
+                                            productID: values.productID,
+                                            productName: values.productName,
+                                            contactNo: values.contactNo,
+                                            orderDate: values.orderDate,
+                                            orderQty: values.orderQty,
+                                            orderPrice: values.orderPrice,
+                                            orderStatus: values.orderStatus
+                                        })
+                                    }
+                                    fetch("http://localhost:2000/orders", requestOptions)
+                                        .then((res) => res.json())
+                                        .then(result => {
+                                            setAlertMsg(result.message)
+                                        })
+                                        .then(setShowAlert(true))
+                                        .then(resetForm())
+                                        .then(setSubmitting(false))
+                                        .then(handleOrderClose())
+                                }, 500);
                             }
                         }
                     >
@@ -272,10 +281,10 @@ const AddOrder = () => {
                                         ) : null}
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="orderDate">
+                                <Form.Group as={Row} className="mb-3">
                                     <Form.Label for="orderDate" column sm="2">ORDER DATE :</Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="orderDate"
+                                        <Form.Control id="orderDate" type="text" name="orderDate"
                                             placeholder="Enter Date"
                                             onChange={(e) => setFieldValue("orderDate", e.target.value)}
                                             value={values.orderDate}
@@ -286,9 +295,12 @@ const AddOrder = () => {
                                     </Col>
                                     <Form.Label for="orderQty" column sm="2">ORDER QTY:</Form.Label>
                                     <Col sm="4">
-                                        <Form.Control type="text" name="orderQty"
+                                        <Form.Control id="orderQty" type="text" name="orderQty"
                                             placeholder="Enter Quantity"
-                                            onChange={(e) => setFieldValue("orderQty", e.target.value)}
+                                            onChange={(e) => {
+                                                setFieldValue("orderQty", e.target.value)
+                                                dispatch(changeTotalPrice(e.target.value * currentSelectedProductPrice))
+                                            }}
                                             value={values.orderQty}
                                             style={{ borderColor: touched.orderQty && errors.orderQty ? "red" : null }} />
                                         {touched.orderQty && errors.orderQty ? (
@@ -301,8 +313,8 @@ const AddOrder = () => {
                                     <Col sm="3">
                                         <Form.Control type="text" name="orderPrice"
                                             placeholder="Rs."
-                                            onChange={(e) => setFieldValue("orderPrice", e.target.value)}
-                                            value={values.orderPrice}
+                                            onChange={handleChange}
+                                            defaultValue={values.orderPrice}
                                             style={{ borderColor: touched.orderPrice && errors.orderPrice ? "red" : null }} />
                                         {touched.orderPrice && errors.orderPrice ? (
                                             <Col className="error-message">{errors.orderPrice}</Col>
@@ -324,7 +336,7 @@ const AddOrder = () => {
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button variant="outline-primary" size="sm" type="submit" >ADD</Button>
+                                    <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting}>ADD</Button>
                                     <Button variant="outline-danger" size="sm" onClick={handleOrderClose} >CLOSE</Button>
                                 </Modal.Footer>
                             </Form>
