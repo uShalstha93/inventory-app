@@ -53,13 +53,13 @@ Tech Stack:
 - [x] Users
     - [x] Search Users
     - [x] Show Users
+    
+- [x] Orders
+    - [x] Orders Dashboard
+    - [x] Add Orders
 
 
 ## Future Feature
-
-- [ ] Orders
-    - [ ] Orders Dashboard
-    - [ ] Add Orders
 
 - [ ] Order Tracking
 
