@@ -27,8 +27,6 @@ Tech Stack:
     - [x] Login
     - [x] Registration
 
-- [ ] Inventory Interactive Dashboard
-
 - [x] Category
     - [x] Search Category
     - [x] Show Category
@@ -61,6 +59,7 @@ Tech Stack:
 
 ## Future Feature
 
+- [ ] Inventory Interactive Dashboard
 - [ ] Order Tracking
 
 
