@@ -19,6 +19,8 @@ const Login = () => {
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
 
+    // Form Validation
+
     const validateLoginSchema = Yup.object().shape({
         username: Yup.string()
             .required("* UserName is Required!")
@@ -32,10 +34,12 @@ const Login = () => {
 
         <div className="registration-body" style={{ backgroundImage: `url(${LoginImg})`, backgroundRepeat: "no-repeat" }}>
             <div className="form-body p-4 rounded">
+
                 <div className="text-center rounded shadow" style={{ background: "#5d5d74", color: "white", backgroundImage: `url(${TitleImg})` }}>
                     <h1 className="" style={{ position: "relative" }}>SIGN IN</h1>
                     <span>Welcome To Inventory Management System</span>
                 </div>
+
                 <Formik
                     initialValues={{ username: "", password: "" }}
                     validationSchema={validateLoginSchema}
@@ -52,6 +56,9 @@ const Login = () => {
                                 })
                             }
                             // console.log(requestOptions.body)
+
+                            // compare username and password from backend
+
                             fetch("http://localhost:2000/login", requestOptions)
                                 // .then(alert(`${values.username} - Login Successfully`))
                                 .then((res) => res.json())
@@ -81,37 +88,59 @@ const Login = () => {
 
                     }}
                 >
+
                     {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+
                         <Form onSubmit={handleSubmit} className="m-4">
+
                             <Form.Group as={Row} className="mb-3" controlId="username">
+
                                 <Form.Label column sm="4">UserName:</Form.Label>
+
                                 <Col sm="8">
                                     <Form.Control type="text" name="username" placeholder="UserName" onChange={handleChange} value={values.username} style={{ borderColor: touched.username && errors.username ? "red" : null }} />
                                     {touched.username && errors.username ? (
                                         <Col className="error-message">{errors.username}</Col>
                                     ) : null}
                                 </Col>
+
                             </Form.Group>
+
                             <Form.Group as={Row} className="mb-3" controlId="password">
+
                                 <Form.Label column sm="4">Password:</Form.Label>
+
                                 <Col sm="8">
                                     <Form.Control type="password" name="password" placeholder="Enter Password" onChange={handleChange} value={values.password} style={{ borderColor: touched.password && errors.password ? "red" : null }} />
                                     {touched.password && errors.password ? (
                                         <Col className="error-message">{errors.password}</Col>
                                     ) : null}
                                 </Col>
+
                             </Form.Group>
+
                             <Form.Group className="mb-2">
+
                                 <Form.Text style={{ position: "relative", left: "9rem" }}>Forget Password ?</Form.Text>
+
                             </Form.Group>
+
                             <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN IN</Button>
+
                             <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "2rem" }}>
                                 Already Have Account ? <Link to="/register">REGISTER</Link>
                             </Form.Text>
+
                         </Form>
+
                     )}
+
                 </Formik>
+
             </div>
+
+            {/* Message Alert Starts */}
+
             <ToastContainer position="center" className="p-3">
                 <Toast onClose={() => setShowAlert(false)} show={showAlert} delay={5000} style={{ fontSize: "15px" }} autohide>
                     <Toast.Header style={{ background: "red", color: "black" }}>
@@ -120,6 +149,9 @@ const Login = () => {
                     <Toast.Body>{alertMsg}</Toast.Body>
                 </Toast>
             </ToastContainer>
+
+            {/* Message Alert Ends */}
+
         </div>
 
     )

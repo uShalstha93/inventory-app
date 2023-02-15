@@ -31,6 +31,8 @@ const NavBar = () => {
     const displayName = localStorage.getItem("fullName")
     // console.log(displayName)
 
+    // Session Token Removed
+
     const logout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("fullName")
@@ -45,23 +47,36 @@ const NavBar = () => {
         //     <div style={userStyle}>UserName</div>
         // </div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ fontFamily: "serif", backgroundImage: `url(${TitleImg})` }}>
+            
             <Container>
+
                 <Navbar.Brand as={Link} to='/dashboard'>
                     <img src={Logo} className="d-inline-block" alt="brand" width="70px" />
                     INVENTORY MANAGEMENT SYSTEM
                 </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
                 <Navbar.Collapse id="responsive-navbar-nav">
+
                     <Nav className="justify-content-end flex-grow-1 pe-3">
+
                         <NavDropdown title={displayName} id="collasible-nav-dropdown">
+
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
                             <NavDropdown.Item as={Button} variant="light" onClick={logout}>Log Out</NavDropdown.Item>
+
                         </NavDropdown>
+
                     </Nav>
+
                 </Navbar.Collapse>
+
             </Container>
+
         </Navbar>
+
     );
 }
 
