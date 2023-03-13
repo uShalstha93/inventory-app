@@ -18,6 +18,13 @@ const Login = () => {
 
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+
+    //show password
+
+    const togglePassword = () => {
+        setShowPassword(prevState => !prevState)
+    }
 
     // Form Validation
 
@@ -111,9 +118,14 @@ const Login = () => {
                                 <Form.Label column sm="4">Password:</Form.Label>
 
                                 <Col sm="8">
-                                    <Form.Control type="password" name="password" placeholder="Enter Password" onChange={handleChange} value={values.password} style={{ borderColor: touched.password && errors.password ? "red" : null }} />
+                                    <Form.Control type={showPassword ? "text" : "password"} name="password" placeholder="Enter Password" onChange={handleChange} value={values.password} style={{ borderColor: touched.password && errors.password ? "red" : null }} />
+                                    <Button style={{ backgroundColor: "white", borderColor: "white", position: "relative", left: "9.5rem", top: "-2.2rem", padding: "0.2rem" }} onClick={togglePassword}>
+                                        {
+                                            showPassword ? <i className="bi bi-eye-slash" style={{ position: "relative", color: "black" }} /> : <i className="bi bi-eye" style={{ position: "relative", color: "black" }} />
+                                        }
+                                    </Button>
                                     {touched.password && errors.password ? (
-                                        <Col className="error-message">{errors.password}</Col>
+                                        <Col className="error-message" style={{ marginTop: "-2rem" }}>{errors.password}</Col>
                                     ) : null}
                                 </Col>
 

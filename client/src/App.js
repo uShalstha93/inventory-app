@@ -30,6 +30,7 @@ const App = () => {
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Registration />} />
+        <Route path='*' element={<h1 style={{ alignItems: "center", justifyContent: "center", textAlign: "center", position: "relative", top: "15rem" }}>Page Not Found !</h1>} />
       </Routes>
     </Router>
     

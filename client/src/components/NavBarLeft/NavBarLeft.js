@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NavleftImg from '../../image/NavbarBackground.png'
+// import NavleftImg from '../../image/NavbarBackground.png'
 
 const NavBarLeft = () => {
 

@@ -13,6 +13,13 @@ const Registration = () => {
 
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+
+    //show password
+
+    const togglePassword = () => {
+        setShowPassword(preState => !preState)
+    }
 
     // Form Validation
 
@@ -125,7 +132,7 @@ const Registration = () => {
                                         <Col className="error-message">{errors.address}</Col>
                                     ) : null}
                                 </Col>
-                                
+
                             </Form.Group>
 
                             <Form.Group as={Row} className="mb-3" controlId="contactno">
@@ -159,7 +166,12 @@ const Registration = () => {
                                 <Form.Label column sm="4">Password:</Form.Label>
 
                                 <Col sm="8">
-                                    <Form.Control type="password" name="password" placeholder="Enter Password" onChange={handleChange} value={values.password} style={{ borderColor: touched.password && errors.password ? "red" : null }} />
+                                    <Form.Control type={showPassword ? "text" : "password"} name="password" placeholder="Enter Password" onChange={handleChange} value={values.password} style={{ borderColor: touched.password && errors.password ? "red" : null }} />
+                                    <Button style={{ backgroundColor: "white", borderColor: "white", position: "relative", left: "9.5rem", top: "-2.2rem", padding: "0.2rem" }} onClick={togglePassword}>
+                                        {
+                                            showPassword ? <i className="bi bi-eye-slash" style={{ position: "relative", color: "black" }} /> : <i className="bi bi-eye" style={{ position: "relative", color: "black" }} />
+                                        }
+                                    </Button>
                                     {touched.password && errors.password ? (
                                         <Col className="error-message">{errors.password}</Col>
                                     ) : null}
@@ -168,7 +180,7 @@ const Registration = () => {
                             </Form.Group>
 
                             <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN UP</Button>
-                            
+
                             <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "1rem" }}>
                                 Already Have Account ? <Link to="/login">SIGN IN</Link>
                             </Form.Text>
