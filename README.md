@@ -11,6 +11,7 @@ Tech Stack:
 - React Bootstrap Icons
 - React Bootstrap Toast for Alert
 - Formik & Yup for Form Validation in React
+- React Google Recaptcha
 - MongoDB
 - Mongoose for Model and Connection
 - Node JS in Backend
