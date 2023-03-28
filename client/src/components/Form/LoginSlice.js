@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
     fullName: "",
-    token: ""
+    token: "",
+    captchaKey: ""
 }
 
 const LoginSlice = createSlice({
@@ -15,8 +16,11 @@ const LoginSlice = createSlice({
         changeToken: (state, actions) => {
             state.token = actions.payload
         },
+        changeCaptchaKey: (state,actions) => {
+            state.captchaKey = actions.payload
+        },
     }
 })
 
-export const { changeFullName, changeToken } = LoginSlice.actions;
+export const { changeFullName, changeToken, changeCaptchaKey } = LoginSlice.actions;
 export default LoginSlice.reducer;

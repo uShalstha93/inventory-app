@@ -5,15 +5,36 @@ import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
 import RegisterImg from '../../image/IMS-LOGINBACK.png'
 import TitleImg from '../../image/MainBackground.png'
+import ReCAPTCHA from "react-google-recaptcha"
 // import '../../../wrapper.css'
 
 const Registration = () => {
 
     document.title = `Register - Inventory`
 
+    const recaptchaRef = React.createRef()
+
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const [validateCaptcha, setValidateCaptcha] = useState(false)
+
+    const recaptchaChange = (token) => {
+        try {
+            if (token) {
+                setValidateCaptcha(true)
+                // console.log("true token", token)
+            }
+            else {
+                setValidateCaptcha(false)
+                alert("You are not HUMAN !!")
+                // console.log("false token", token)
+            }
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
 
     //show password
 
@@ -58,8 +79,8 @@ const Registration = () => {
                 <Formik
                     initialValues={{ username: "", fullname: "", address: "", contactno: "", email: "", password: "" }}
                     validationSchema={validateRegisterSchema}
-                    onSubmit={(values, { setSubmitting, resetForm }) => {
-                        setSubmitting(true);
+                    onSubmit={(values, { resetForm }) => {
+                        // setSubmitting(true);
                         setTimeout(() => {
                             // alert(JSON.stringify(values, null, 2));
                             const requestOptions = {
@@ -83,7 +104,8 @@ const Registration = () => {
                                 })
                                 .then(setShowAlert(true))
                                 .then(resetForm())
-                                .then(setSubmitting(false))
+                                // .then(setSubmitting(false))
+                                .then(recaptchaRef.current.reset())
                             // categorySubmit();
                             // resetForm();
                             // setSubmitting(false);
@@ -91,7 +113,7 @@ const Registration = () => {
 
                     }}
                 >
-                    {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+                    {({ values, errors, touched, handleChange, handleSubmit }) => (
                         <Form onSubmit={handleSubmit} className="m-5">
 
                             {/* Registration Form */}
@@ -179,7 +201,23 @@ const Registration = () => {
 
                             </Form.Group>
 
-                            <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN UP</Button>
+                            <Form.Group className="mb-2">
+
+                                <ReCAPTCHA
+                                    ref={recaptchaRef}
+                                    name="recaptcha"
+                                    id="recaptcha"
+                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                    size="normal"
+                                    onChange={recaptchaChange}
+                                    onExpired={() => {
+                                        recaptchaRef.current.reset()
+                                    }}
+                                />
+
+                            </Form.Group>
+
+                            <Button variant="outline-primary" size="sm" type="submit" disabled={!validateCaptcha} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN UP</Button>
 
                             <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "1rem" }}>
                                 Already Have Account ? <Link to="/login">SIGN IN</Link>

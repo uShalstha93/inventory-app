@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { changeFullName, changeToken } from './LoginSlice'
+import { changeCaptchaKey, changeFullName, changeToken } from './LoginSlice'
 import { Form, Col, Row, Button, ToastContainer, Toast } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
 import LoginImg from '../../image/IMS-LOGINBACK.png'
 import TitleImg from '../../image/MainBackground.png'
+import ReCAPTCHA from "react-google-recaptcha"
 
 const Login = () => {
 
@@ -16,9 +17,33 @@ const Login = () => {
 
     const navigate = useNavigate()
 
+    const recaptchaRef = React.createRef()
+
     const [showAlert, setShowAlert] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const [captchakey, setCaptchaKey] = useState("")
+    const [validateCaptcha, setValidateCaptcha] = useState(false)
+
+    // console.log(process.env.REACT_APP_SITE_KEY)
+
+    const recaptchaChange = (token) => {
+        try {
+            if (token) {
+                setValidateCaptcha(true)
+                setCaptchaKey(token)
+                // console.log("true token", token)
+            }
+            else {
+                setValidateCaptcha(false)
+                alert("You are not HUMAN !!")
+                // console.log("false token", token)
+            }
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
 
     //show password
 
@@ -50,8 +75,8 @@ const Login = () => {
                 <Formik
                     initialValues={{ username: "", password: "" }}
                     validationSchema={validateLoginSchema}
-                    onSubmit={(values, { setSubmitting, resetForm }) => {
-                        setSubmitting(true);
+                    onSubmit={(values, { resetForm }) => {
+                        // setSubmitting(true);
                         setTimeout(() => {
                             // alert(JSON.stringify(values, null, 2));
                             const requestOptions = {
@@ -76,18 +101,22 @@ const Login = () => {
                                     if (result._token) {
                                         localStorage.setItem("token", result._token)
                                         localStorage.setItem("fullName", result.fullName)
+                                        localStorage.setItem("captchaKey", captchakey)
                                         // console.log(result.fullName,result._token)
                                         dispatch(changeFullName(result.fullName))
                                         dispatch(changeToken(result._token))
+                                        dispatch(changeCaptchaKey(captchakey))
                                         navigate('/dashboard')
                                     }
                                     else {
                                         setShowAlert(true)
                                         setAlertMsg(result.message)
+                                        setValidateCaptcha(false)
                                     }
                                 })
                                 .then(resetForm())
-                                .then(setSubmitting(false))
+                                .then(recaptchaRef.current.reset())
+                            // .then(setSubmitting(false))
                             // categorySubmit();
                             // resetForm();
                             // setSubmitting(false);
@@ -96,7 +125,7 @@ const Login = () => {
                     }}
                 >
 
-                    {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+                    {({ values, errors, touched, handleChange, handleSubmit }) => (
 
                         <Form onSubmit={handleSubmit} className="m-4">
 
@@ -133,11 +162,27 @@ const Login = () => {
 
                             <Form.Group className="mb-2">
 
+                                <ReCAPTCHA
+                                    ref={recaptchaRef}
+                                    name="recaptcha"
+                                    id="recaptcha"
+                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                    size="normal"
+                                    onChange={recaptchaChange}
+                                    onExpired={() => {
+                                        recaptchaRef.current.reset()
+                                    }}
+                                />
+
+                            </Form.Group>
+
+                            <Form.Group className="mb-2">
+
                                 <Form.Text style={{ position: "relative", left: "9rem" }}>Forget Password ?</Form.Text>
 
                             </Form.Group>
 
-                            <Button variant="outline-primary" size="sm" type="submit" disabled={isSubmitting} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN IN</Button>
+                            <Button variant="outline-primary" size="sm" type="submit" disabled={!validateCaptcha} style={{ position: "relative", left: "6.5rem", marginTop: "10px" }}>SIGN IN</Button>
 
                             <Form.Text className="text-muted" style={{ position: "relative", top: "2.5rem", right: "2rem" }}>
                                 Already Have Account ? <Link to="/register">REGISTER</Link>

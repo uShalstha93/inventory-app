@@ -36,6 +36,7 @@ const NavBar = () => {
     const logout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("fullName")
+        localStorage.removeItem("captchaKey")
         navigate('/login')
     }
 
