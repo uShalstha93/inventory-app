@@ -166,7 +166,7 @@ const Login = () => {
                                     ref={recaptchaRef}
                                     name="recaptcha"
                                     id="recaptcha"
-                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                    sitekey="6Lfnij0lAAAAACiZA9aPdiN3clTSX4S3E04mqKjk"
                                     size="normal"
                                     onChange={recaptchaChange}
                                     onExpired={() => {
